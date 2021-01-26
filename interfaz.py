@@ -1,9 +1,8 @@
 import tkinter
-import pySimpleGUI as sg
+import PySimpleGUI as sg  
 
-
-class prueba(self):
-    def sg(self):
+class prueba():
+    def sg():
         # Define the window's contents
         layout = [[sg.Text("What's your name?")],
                 [sg.Input(key='-INPUT-')],
