@@ -1,4 +1,6 @@
-from interfaz import prueba
+from interfaz import Interfaz
+
 
 if __name__ == "__main__":
-    prueba.sg(prueba)
+    Interfaz.interfaz(Interfaz)
+    
