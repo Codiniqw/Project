@@ -4,8 +4,8 @@ import PySimpleGUI as sg
 class Interfaz:
     def interfaz(seft):
         # Define the window's contents
-        sg.theme('DarkBlue16')
-        layout = [[sg.Text()],
+        sg.theme('LightBlue7')
+        layout = [[sg.Text("Hola")],
                 #visualizacion de los elementos
                 #elementos a agregar o consultar
                 [sg.Button('add New'), sg.Button('Update'), sg.Button('Delete'), sg.Button('Print All'), sg.Button('close')]]  # Aqui van todos los botones
