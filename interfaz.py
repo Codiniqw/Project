@@ -12,7 +12,7 @@ class Interfaz:
             [sg.Table(
                 headings = None,
                 key='table1',  
-                values=["1","2","4"],
+                values=[["1","2","4"],["1","2","4"]],
                 
                 max_col_width=25,
                 auto_size_columns=False,
