@@ -9,9 +9,9 @@ class Interfaz:
         
         layout = [
             [sg.Table(
-                headings = None,
-                key='table1',  
+                key='table1',
                 values=[["HOLA","hOLA2","hOLA"],["1","2","4"],["1","2","4"],["1","2","4"]],
+                headings=["HI","Hola","Froy"],
                 max_col_width=50,
                 auto_size_columns=False,
                 justification='left',
