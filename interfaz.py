@@ -1,17 +1,21 @@
 import tkinter
 import PySimpleGUI as sg 
+import PIL.ImageTk
 
 
 class Interfaz:
     def interfaz(seft):
         # Define the window's contents
         sg.theme('DarkBlue16')
-        
+        deshacer='iconos/deshacer.png'
+        rehacer='iconos/rehacer.png'
         layout = [
+            [sg.RButton('',image_filename=deshacer, image_size=(32, 32)),
+             sg.RButton('', image_filename=rehacer, image_size=(32, 32))],
             [sg.Table(
-                headings = None,
+                headings = ["ISBN","Titulo", "Autor","Genero"],
                 key='table1',  
-                values=[["HOLA","hOLA2","hOLA"],["1","2","4"],["1","2","4"],["1","2","4"]],
+                values=[["","",""],["","",""],["","",""],["","",""]],#
                 max_col_width=50,
                 auto_size_columns=False,
                 justification='left',
@@ -28,18 +32,18 @@ class Interfaz:
                 sg.Button('Delete'), sg.Button('Print All'),
                 sg.Button('close')]]  # Aqui van todos los botones
         
-        # Create the window
+        # Crear la ventana
         window = sg.Window('Biblioteca iteractiva', layout)
 
-        # Display and interact with the Window using an Event Loop
+        # Musetra la ventana
         while True:
             event, values = window.read()
-            # See if user wants to quit or window was closed
+            # Asigna el evento cerrar ventana
             if event == sg.WINDOW_CLOSED or event == 'close':
                 break
-            # Output a message to the window
+            # Salida de menssajes de la pantalla
             window['-OUTPUT-'].update('Hello ' + values['-INPUT-'] +
                                     "! Gracias por usar la bilblioteca")
 
-        # Finish up by removing from the screen
+        # Cierra el programa al cerrar la ventana
         window.close()
