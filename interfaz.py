@@ -2,7 +2,7 @@ import tkinter
 import PySimpleGUI as sg 
 from tkinter import messagebox as mb
 
-
+#cambio
 class Interfaz:
     def interfaz(seft):
         # Define the window's contents
