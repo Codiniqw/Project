@@ -9,7 +9,6 @@ class Interfaz:
         sg.theme('DarkBlue16')
         deshacer='iconos/deshacer.png'
         rehacer='iconos/rehacer.png'
-        #comentario
         layout = [
             [sg.RButton('',image_filename=deshacer, image_size=(32, 32),key="DESHACER"),
              sg.RButton('', image_filename=rehacer, image_size=(32, 32),key="HACER")],
