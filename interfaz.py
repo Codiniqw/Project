@@ -1,14 +1,30 @@
-import tkinter
+from tkinter import *
 import PySimpleGUI as sg 
 from tkinter import messagebox as mb
-
+from MongoConect import Conector
 
 class Interfaz:
-    def interfaz(seft):
-        # Define the window's contents
+    def __init__(self):
+        conexion = Conector()
+        self.conect = conexion.conector()
+        print("conexion exitosa")
+
+    def addLibro(self, ISBN, Titulo, Autor, Genero, Cantidad):
+        libro = {
+            'isbn': ISBN,
+            'titulo': Titulo,
+            'autor': Autor,
+            'genero': Genero,
+            'cantidad': Cantidad
+        }
+        resultado = self.conect.libro.insert_one(libro)
+        print("Libro insertado: ", resultado.inserted_Titulo)
+
+    def interfaz(self):
         sg.theme('DarkBlue16')
         deshacer='iconos/deshacer.png'
         rehacer='iconos/rehacer.png'
+
         layout = [
             [sg.RButton('',image_filename=deshacer, image_size=(32, 32),key="DESHACER"),
              sg.RButton('', image_filename=rehacer, image_size=(32, 32),key="HACER")],
@@ -68,3 +84,5 @@ class Interfaz:
                             "Aquí se llamará el método deshacer")
         # Cierra el programa al cerrar la ventana
         window.close()
+
+    
