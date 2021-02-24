@@ -4,12 +4,9 @@ from tkinter import messagebox as mb
 from MongoConect import Conector
 
 class Interfaz:
-    def __init__(self):
-        conexion = Conector()
-        self.conect = conexion.conector()
-        print("conexion exitosa")
 
-    def addLibro(self, ISBN, Titulo, Autor, Genero, Cantidad):
+        
+    def addLibro(ISBN, Titulo, Autor, Genero, Cantidad):
         libro = {
             'isbn': ISBN,
             'titulo': Titulo,
@@ -17,10 +14,12 @@ class Interfaz:
             'genero': Genero,
             'cantidad': Cantidad
         }
-        resultado = self.conect.libro.insert_one(libro)
-        print("Libro insertado: ", resultado.inserted_Titulo)
+        conexion = Conector()
+        connect = conexion.conector()
+        resultado = connect.libros.insert_one(libro)
+        print("Libro insertado: ", resultado)
 
-    def interfaz(self):
+    def interfaz():
         sg.theme('DarkBlue16')
         deshacer='iconos/deshacer.png'
         rehacer='iconos/rehacer.png'

@@ -1,4 +1,4 @@
-from pymongo import MongoClient
+import pymongo as mb
 import sys
 
 
@@ -8,7 +8,7 @@ class Conector:
         puerto = 27017
         db = "biblioteca"
         try:
-            cliente = MongoClient("mongodb://{}:{}".format(host, puerto))
+            cliente = mb.MongoClient("mongodb://{}:{}".format(host, puerto))
             print("conexion exitosa")
             return cliente[db]
             
