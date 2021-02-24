@@ -2,6 +2,7 @@ from tkinter import *
 import PySimpleGUI as sg 
 from tkinter import messagebox as mb
 from MongoConect import Conector
+import pymongo
 
 class Interfaz:
 
@@ -18,6 +19,14 @@ class Interfaz:
         connect = conexion.conector()
         resultado = connect.libros.insert_one(libro)
         print("Libro insertado: ", resultado)
+
+    def mostrarDatos():
+        myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+        mydb = myclient["biblioteca"]
+        mycol = mydb["libros"]
+
+        for x in mycol.find():
+            print(x)
 
     def interfaz():
         sg.theme('DarkBlue16')
