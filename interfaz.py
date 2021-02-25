@@ -25,14 +25,24 @@ class Interfaz:
         mydb = myclient["biblioteca"]
         mycol = mydb["libros"]
 
-        for x in mycol.find():
-            print(x)
+        for documento in mycol.find():
+            datos=(str(documento["isbn"])+" "+documento["titulo"]+" " +
+                 documento["autor"]+" "+documento["genero"]+" "+str(documento["cantidad"]))
+            print(datos)
 
     def interfaz():
         sg.theme('DarkBlue16')
         deshacer='iconos/deshacer.png'
         rehacer='iconos/rehacer.png'
+        myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+        mydb = myclient["biblioteca"]
+        mycol = mydb["libros"]
 
+        for documento in mycol.find():
+            datos = (str(documento["isbn"])+" "+documento["titulo"]+" " +
+                     documento["autor"]+" "+documento["genero"]+" "+str(documento["cantidad"]))
+            print(datos)
+       
         layout = [
             [sg.RButton('',image_filename=deshacer, image_size=(32, 32),key="DESHACER"),
              sg.RButton('', image_filename=rehacer, image_size=(32, 32),key="HACER")],
@@ -40,7 +50,10 @@ class Interfaz:
             [sg.Table(
                 headings = ["ISBN","Titulo", "Autor","Genero","Cantidad"],
                 key='table1',  
-                values=[["","","","",""],["","","","",""],["","","","",""],["","","","",""]],
+                values=[
+                    [datos]
+                    
+                ],
                 max_col_width=50,
                 auto_size_columns=False,
                 justification='center',
