@@ -39,9 +39,15 @@ class Interfaz:
         mycol = mydb["libros"]
 
         for documento in mycol.find():
-            datos = (str(documento["isbn"])+" "+documento["titulo"]+" " +
-                     documento["autor"]+" "+documento["genero"]+" "+str(documento["cantidad"]))
-            print(datos)
+            data = {
+                "isbn": str(documento["isbn"]),
+                "titulo": documento["titulo"],
+                "autor": documento["autor"],
+                "genero": documento["genero"],
+                "cantidad": str(documento["cantidad"])
+                }
+            print(data)
+    
        
         layout = [
             [sg.RButton('',image_filename=deshacer, image_size=(32, 32),key="DESHACER"),
@@ -49,9 +55,9 @@ class Interfaz:
             [sg.Text('_'*70)],
             [sg.Table(
                 headings = ["ISBN","Titulo", "Autor","Genero","Cantidad"],
-                key='table1',  
+                key='table',  
                 values=[
-                    [datos]
+                    [data.get('isbn'),data.get('titulo'),data.get('autor'),data.get('genero'),data.get('cantidad')]
                     
                 ],
                 max_col_width=50,
