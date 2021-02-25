@@ -3,6 +3,8 @@ import PySimpleGUI as sg
 from tkinter import messagebox as mb
 from MongoConect import Conector
 import pymongo
+import requests
+import json
 
 class Interfaz:
 
@@ -20,16 +22,6 @@ class Interfaz:
         resultado = connect.libros.insert_one(libro)
         print("Libro insertado: ", resultado)
 
-    def mostrarDatos():
-        myclient = pymongo.MongoClient("mongodb://localhost:27017/")
-        mydb = myclient["biblioteca"]
-        mycol = mydb["libros"]
-
-        for documento in mycol.find():
-            datos=(str(documento["isbn"])+" "+documento["titulo"]+" " +
-                 documento["autor"]+" "+documento["genero"]+" "+str(documento["cantidad"]))
-            print(datos)
-
     def interfaz():
         sg.theme('DarkBlue16')
         deshacer='iconos/deshacer.png'
@@ -37,18 +29,26 @@ class Interfaz:
         myclient = pymongo.MongoClient("mongodb://localhost:27017/")
         mydb = myclient["biblioteca"]
         mycol = mydb["libros"]
+        l=[]
 
-        for documento in mycol.find():
-            data = {
-                "isbn": str(documento["isbn"]),
-                "titulo": documento["titulo"],
-                "autor": documento["autor"],
-                "genero": documento["genero"],
-                "cantidad": str(documento["cantidad"])
-                }
-            print(data)
-    
-       
+        with open("data.txt","w") as f:
+            for documento in mycol.find():
+                data = {
+                    "isbn": str(documento["isbn"]),
+                    "titulo": documento["titulo"],
+                    "autor": documento["autor"],
+                    "genero": documento["genero"],
+                    "cantidad": str(documento["cantidad"])
+                    }
+                #print(data)
+                print("["+data.get('isbn')+','+'"'+data.get('titulo')+'"'+','+'"'+data.get(
+                    'autor')+'"'+','+'"'+data.get('genero')+'"'+','+data.get('cantidad')+"],", file=f)
+
+        f = open("data.txt","r")
+        datos = f.read()
+        print(datos)
+        f.close()
+
         layout = [
             [sg.RButton('',image_filename=deshacer, image_size=(32, 32),key="DESHACER"),
              sg.RButton('', image_filename=rehacer, image_size=(32, 32),key="HACER")],
@@ -57,8 +57,7 @@ class Interfaz:
                 headings = ["ISBN","Titulo", "Autor","Genero","Cantidad"],
                 key='table',  
                 values=[
-                    [data.get('isbn'),data.get('titulo'),data.get('autor'),data.get('genero'),data.get('cantidad')]
-                    
+                    datos
                 ],
                 max_col_width=50,
                 auto_size_columns=False,
