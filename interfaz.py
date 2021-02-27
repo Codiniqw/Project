@@ -94,23 +94,22 @@ class Interfaz:
                 values=[
                     [isbn,titulo,autor,genero,cantidad]
                 ],
-                
                 max_col_width=100,
                 auto_size_columns=False,
-                size=20,
+                size=50,
                 justification='left',
                 background_color='#85C1E9', 
-                num_rows=5,
+                num_rows=10,
+                alternating_row_color='lightyellow',
                 enable_events=True)],
             [sg.Text('_'*70)],
             [sg.Text("Edición de libros")],
-            [sg.Text("ISBN"), sg.Input(size=(20,2))],
-            [sg.Text("Titulo"), sg.Input(size=(20,2))],
-            [sg.Text("Autor"), sg.Input(size=(20,2))],
+            [sg.Text("ISBN"), sg.Input(size=(20,2),key='-ISBN-')],
+            [sg.Text("Titulo"), sg.Input(size=(20,2),key='-TITULO-')],
+            [sg.Text("Autor"), sg.Input(size=(20,2),key='-AUTOR-')],
             [sg.Text("Genero"), 
-                sg.Combo(["Novela", "Cuento","Terror","ciencia ficcion"], size=(20, 2), change_submits=False),
-                sg.Text("Cantidad"), 
-                sg.Input(size=(10,2))],
+                sg.Combo(["Novela", "Cuento","Terror","ciencia ficcion"], size=(20, 2), change_submits=False,key='-GENERO-'),
+                sg.Text("Cantidad"),sg.Input(size=(10,2),key='-CANTIDAD-')],
             [sg.Text('_'*70)],
             [sg.Button('add New'), 
                 sg.Button('Update'),
@@ -128,8 +127,38 @@ class Interfaz:
             if event == sg.WINDOW_CLOSED or event == 'close':
                 break
             elif event=='add New':
+                #OBTENEMOS LOS VALORES INGRESADOS POR EL USUARIO
+                ISBN=window['-ISBN-'].Get()
+                Titulo = window['-TITULO-'].Get()
+                Autor = window['-AUTOR-'].Get()
+                Genero = window['-GENERO-'].Get()
+                Cantidad=window['-CANTIDAD-'].Get()
+                #GUARDAMOS LA INFORMACION EN UN JSON
+                libro = {
+                    'isbn': ISBN,
+                    'titulo': Titulo,
+                    'autor': Autor,
+                    'genero': Genero,
+                    'cantidad': Cantidad
+                }
+                #NOS CONECTAMOS A LA BASE DE DATOS Y AGREGAMOS EL JSON SI NO TIENE VALORES NULOS
+                conexion = Conector()
+                connect = conexion.conector()
+                resultado = connect.libros.insert_one(libro)
+                #MOSTRAMOS LA ADVERTENCIA DE EXITO E IMPRIMIMOS EL JSON EN CONSOLA
+                print(libro)
                 mb.showinfo("Información",
-                            "Aquí se llamará el método agregarNuevo")
+                            "El libro se ha agregado con exito")
+                #LIMPIAMOS LOS CAMPOS
+                window.FindElement('-ISBN-').update('')
+                window.FindElement('-TITULO-').update('')
+                window.FindElement('-AUTOR-').update('')
+                window.FindElement('-GENERO-').update('')
+                window.FindElement('-CANTIDAD-').update('')
+                #RECARGAMOS LA VENTANA
+                
+                
+
             elif event == 'Update':
                 mb.showinfo("Información",
                             "Aquí se llamará el método actualizar")
