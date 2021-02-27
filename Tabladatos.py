@@ -26,7 +26,7 @@ def make_table(num_rows):
                     "genero": str(documento["genero"]),
                     "cantidad": str(documento["cantidad"]),
             }
-        data[i] = [ query.get('isbn'),query.get('titulo'),query.get('autor'),query.get('genero'),query.get('cantidad')] #array que almacena rellena las columnas
+            data[i] = [query.get('isbn'),query.get('titulo'),query.get('autor'),query.get('genero'),query.get('cantidad')] #array que almacena rellena las columnas
     return data
 myclient = pymongo.MongoClient("mongodb://localhost:27017/")
 mydb = myclient["biblioteca"]
