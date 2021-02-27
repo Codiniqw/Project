@@ -3,13 +3,14 @@ import PySimpleGUI as sg
 from tkinter import messagebox as mb
 from MongoConect import Conector
 import pymongo
+from Tabladatos import make_table
 
 
 class Interfaz:
-
-        
-    def addLibro(ISBN, Titulo, Autor, Genero, Cantidad):
+    
+    def addLibro(Col,ISBN, Titulo, Autor, Genero, Cantidad):
         libro = {
+            'col': Col,
             'isbn': ISBN,
             'titulo': Titulo,
             'autor': Autor,
@@ -22,78 +23,25 @@ class Interfaz:
         print("Libro insertado: ", resultado)
 
     def interfaz():
-        sg.theme('DarkBlue16')
+        sg.theme('DarkBlue6')
         deshacer='iconos/deshacer.png'
         rehacer='iconos/rehacer.png'
         myclient = pymongo.MongoClient("mongodb://localhost:27017/")
         mydb = myclient["biblioteca"]
         mycol = mydb["libros"]
 
-        with open("isbn.csv","w") as i:
-            for documento in mycol.find():
-                isbn = {
-                    "isbn": str(documento["isbn"]),
-                    }
-                print(isbn.get('isbn'),file=i)
-        i = open("isbn.csv",'r') 
-        isbn = i.read()
-        print(isbn)
-        i.close()
-
-        with open("titulo.csv", "w") as t:
-            for documento in mycol.find():
-                titulo = {
-                    "titulo": documento["titulo"]
-                }
-                print(titulo.get('titulo'), file=t)
-        t = open("titulo.csv", 'r')
-        titulo = t.read()
-        print(titulo)
-        t.close()
-
-        with open("autor.csv", "w") as a:
-            for documento in mycol.find():
-                autor = {
-                    "autor": documento["autor"]
-                }
-                print(autor.get('autor'), file=a)
-        a = open("autor.csv", 'r')
-        autor = a.read()
-        print(autor)
-        a.close()
-
-        with open("genero.csv", "w") as g:
-            for documento in mycol.find():
-                genero = {
-                    "genero": documento["genero"]
-                }
-                print(genero.get('genero'), file=g)
-        g = open("genero.csv", 'r')
-        genero = g.read()
-        print(genero)
-        g.close()
-
-        with open("cantidad.csv", "w") as c:
-            for documento in mycol.find():
-                cantidad = {
-                    "cantidad": documento["cantidad"]
-                }
-                print(cantidad.get('cantidad'), file=c)
-        c = open("cantidad.csv", 'r')
-        cantidad = c.read()
-        print(cantidad)
-        c.close()
+        # ------ Make the Table Data ------
+        data = make_table(num_rows=mycol.count())
+        headi = [str(data[0][x])+'     ..' for x in range(len(data[0]))]
 
         layout= [
             [sg.RButton('',image_filename=deshacer, image_size=(32, 32),key="DESHACER"),
              sg.RButton('', image_filename=rehacer, image_size=(32, 32),key="HACER")],
             [sg.Text('_'*70)],
             [sg.Table(
-                headings = ["ISBN","Titulo", "Autor","Genero","Cantidad"],
-                key='table',  
-                values=[
-                    [isbn,titulo,autor,genero,cantidad]
-                ],
+                headings = headi,
+                key='-TABLE-',  
+                values=data[1:][:],
                 max_col_width=100,
                 auto_size_columns=False,
                 size=50,
@@ -133,8 +81,10 @@ class Interfaz:
                 Autor = window['-AUTOR-'].Get()
                 Genero = window['-GENERO-'].Get()
                 Cantidad=window['-CANTIDAD-'].Get()
+                Col= mycol.count()+1;
                 #GUARDAMOS LA INFORMACION EN UN JSON
                 libro = {
+                    'col': Col,
                     'isbn': ISBN,
                     'titulo': Titulo,
                     'autor': Autor,
@@ -145,6 +95,7 @@ class Interfaz:
                 conexion = Conector()
                 connect = conexion.conector()
                 resultado = connect.libros.insert_one(libro)
+
                 #MOSTRAMOS LA ADVERTENCIA DE EXITO E IMPRIMIMOS EL JSON EN CONSOLA
                 print(libro)
                 mb.showinfo("Información",
@@ -155,10 +106,10 @@ class Interfaz:
                 window.FindElement('-AUTOR-').update('')
                 window.FindElement('-GENERO-').update('')
                 window.FindElement('-CANTIDAD-').update('')
+                data = make_table(num_rows=mycol.count())
+                headi = [str(data[0][x])+'     ..' for x in range(len(data[0]))]
+                window.FindElement('-TABLE-').update(values=data[1:][:])
                 #RECARGAMOS LA VENTANA
-                
-                
-
             elif event == 'Update':
                 mb.showinfo("Información",
                             "Aquí se llamará el método actualizar")

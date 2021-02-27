@@ -9,13 +9,7 @@ import pymongo
 """
 
 sg.theme('Dark Blue6')
-# ------ Some functions to help generate data for the table ------
-def word():
-    return ''.join(random.choice(string.ascii_lowercase) for i in range(10))
-def number(max_val=1000):
-    return random.randint(0, max_val)
-
-    
+# ------ Some functions to help generate data for the table ------ 
 def make_table(num_rows):
     myclient = pymongo.MongoClient("mongodb://localhost:27017/")
     mydb = myclient["biblioteca"]
@@ -23,8 +17,8 @@ def make_table(num_rows):
     data = [[j for j in range(5)] for i in range(num_rows+1)] #Define el tamaño de la tabla 5 columas, n filas +1 porque en el [se gurda el encabezado]
     data[0] = ["ISBN","Titulo", "Autor","Genero","Cantidad"] #Se Define el emcabezodo o titulos en el espacio[0]
     for i in range(1, num_rows+1):# ciclo que rella la filas   
-        myquery = { "isbn": i }
-        for documento in mycol.find(myquery):
+        myquery1 = { "col": i }
+        for documento in mycol.find( myquery1 ):
             query = {
                     "isbn": str(documento["isbn"]),
                     "titulo": str(documento["titulo"]),
@@ -38,7 +32,7 @@ myclient = pymongo.MongoClient("mongodb://localhost:27017/")
 mydb = myclient["biblioteca"]
 mycol = mydb["libros"]
 # ------ Make the Table Data ------
-data = make_table(num_rows=mycol.count())
+'''data = make_table(num_rows=mycol.count())
 headings = [str(data[0][x])+'     ..' for x in range(len(data[0]))]
 
 # ------ Window Layout ------
@@ -75,4 +69,4 @@ while True:
     elif event == 'Change Colors':
         window['-TABLE-'].update(row_colors=((8, 'white', 'red'), (9, 'green')))
 
-window.close()
+window.close()'''
