@@ -229,3 +229,42 @@ LIBRO: {'_id': ObjectId('603b4842f918d8c61a2c3226'), 'col': 2, 'isbn': '432412',
 --> Libro Eliminado (2021-02-28 04:01:17.427528)
 LIBRO: {'_id': ObjectId('603b674bb57869f69297f124'), 'col': 4, 'isbn': '432412', 'titulo': ' aprende python', 'autor': 'Codiniqw', 'genero': 'ciencia ficcion', 'cantidad': '8'}
 
+
+--> Log History info (2021-02-28 11:03:45.191803 Aplicacion iniciada)
+
+--> Log History info (2021-02-28 11:08:44.682468 Aplicacion iniciada)
+
+--> Nuevo libro agregado (2021-02-28 11:09:17.809619)
+LIBRO: {'col': 1, 'isbn': '545465', 'titulo': 'Viaje al centro de la tierra', 'autor': 'Julio Verne', 'genero': 'ciencia ficcion', 'cantidad': '5', '_id': ObjectId('603bce3da41e18ad500b1b7f')}
+
+
+--> Nuevo libro agregado (2021-02-28 11:10:09.171422)
+LIBRO: {'col': 2, 'isbn': '5444', 'titulo': 'Mi lucha', 'autor': 'Adolf Hitler', 'genero': 'ciencia ficcion', 'cantidad': '1', '_id': ObjectId('603bce71a41e18ad500b1b82')}
+
+
+--> Libro Eliminado (2021-02-28 11:10:17.574296)
+LIBRO: {'_id': ObjectId('603bce3da41e18ad500b1b7f'), 'col': 1, 'isbn': '545465', 'titulo': 'Viaje al centro de la tierra', 'autor': 'Julio Verne', 'genero': 'ciencia ficcion', 'cantidad': '5'}
+
+
+--> Libro Eliminado (2021-02-28 11:10:26.645999)
+LIBRO: {'_id': ObjectId('603bce71a41e18ad500b1b82'), 'col': 1, 'isbn': '5444', 'titulo': 'Mi lucha', 'autor': 'Adolf Hitler', 'genero': 'ciencia ficcion', 'cantidad': '1'}
+
+
+--> Nuevo libro agregado (2021-02-28 11:11:11.006845)
+LIBRO: {'col': 1, 'isbn': '56265', 'titulo': 'Cancion de hielo y fuego', 'autor': 'George RMartin', 'genero': 'ciencia ficcion', 'cantidad': '2', '_id': ObjectId('603bceaea41e18ad500b1b8d')}
+
+
+--> Log History info (2021-02-28 11:12:53.529046 Aplicacion iniciada)
+
+--> Libro actualizado (2021-02-28 11:13:33.575553)
+LIBRO ORIGINAL: {'_id': ObjectId('603bceaea41e18ad500b1b8d'), 'col': 1, 'isbn': '56265', 'titulo': 'Cancion de hielo y fuego', 'autor': 'George RMartin', 'genero': 'ciencia ficcion', 'cantidad': '2'}
+LIBRO ACTUALIZADO: {'$set': {'col': 1, 'isbn': '56265', 'titulo': 'vientos del invierno', 'autor': 'George RMartin', 'genero': 'ciencia ficcion', 'cantidad': '2'}}
+
+
+--> Nuevo libro agregado (2021-02-28 11:15:00.086718)
+LIBRO: {'col': 2, 'isbn': '86685455', 'titulo': 'De la tierra a la luna', 'autor': 'Julio Verne', 'genero': 'ciencia ficcion', 'cantidad': '1', '_id': ObjectId('603bcf94053e5adf7c2df6cf')}
+
+
+--> Libro Eliminado (2021-02-28 11:16:03.103412)
+LIBRO: {'_id': ObjectId('603bceaea41e18ad500b1b8d'), 'col': 1, 'isbn': '56265', 'titulo': 'vientos del invierno', 'autor': 'George RMartin', 'genero': 'ciencia ficcion', 'cantidad': '2'}
+

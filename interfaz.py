@@ -65,7 +65,7 @@ class Interfaz:
             [sg.Text("Titulo"), sg.Input(size=(20,2),key='-TITULO-')],
             [sg.Text("Autor"), sg.Input(size=(20,2),key='-AUTOR-')],
             [sg.Text("Genero"), 
-                sg.Combo(["Novela", "Cuento","Terror","ciencia ficcion"], size=(20, 2), change_submits=False,key='-GENERO-'),
+                sg.Combo(["Novela", "Cuento","Terror","ciencia ficcion"], size=(20, 5), change_submits=False,key='-GENERO-'),
                 sg.Text("Cantidad"),sg.Input(size=(10,2),key='-CANTIDAD-')],
             [sg.Text('_'*70)],
             [sg.Button('add New'), 
