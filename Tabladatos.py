@@ -16,7 +16,7 @@ def make_table(num_rows):
     mycol = mydb["libros"]
     data = [[j for j in range(5)] for i in range(num_rows+1)] #Define el tamaño de la tabla 5 columas, n filas +1 porque en el [se gurda el encabezado]
     data[0] = ["ISBN","Titulo", "Autor","Genero","Cantidad"] #Se Define el emcabezodo o titulos en el espacio[0]
-    for i in range(1, num_rows+1):# ciclo que rella la filas   
+    for i in range(1, num_rows+1):# ciclo que rellena las filas   
         myquery1 = { "col": i }
         for documento in mycol.find( myquery1 ):
             query = {

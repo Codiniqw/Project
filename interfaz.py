@@ -4,6 +4,7 @@ from tkinter import messagebox as mb
 from MongoConect import Conector
 import pymongo
 from Tabladatos import make_table
+from datetime import datetime
 
 
 
@@ -31,9 +32,14 @@ class Interfaz:
         mydb = myclient["biblioteca"]
         mycol = mydb["libros"]
 
+        
+        f = open("log.txt", "a")
+        f.write("\n--> Log History info ("+str(datetime.now())+" Aplicacion iniciada)\n")
+        f.close()
+
         # ------ Make the Table Data ------
         data = make_table(num_rows=mycol.count())
-        headi = [str(data[0][x])+'     ..' for x in range(len(data[0]))]
+        headi = [str(data[0][x])+'          ' for x in range(len(data[0]))]
 
         layout= [
             [sg.RButton('',image_filename=deshacer, image_size=(32, 32),key="DESHACER"),
@@ -110,6 +116,11 @@ class Interfaz:
                 data = make_table(num_rows=mycol.count())
                 headi = [str(data[0][x])+'     ..' for x in range(len(data[0]))]
                 window.FindElement('TABLE').update(values=data[1:][:])
+
+                f = open("log.txt", "a")
+                f.write("\n--> Nuevo libro agregado ("+str(datetime.now())+")\n")
+                f.write("LIBRO: "+str(libro)+"\n\n")
+                f.close()
                 
             elif event == 'Update':
                 myclient = pymongo.MongoClient("mongodb://localhost:27017/")
@@ -151,7 +162,11 @@ class Interfaz:
                          '     ..' for x in range(len(data[0]))]
                 window.FindElement('TABLE').update(values=data[1:][:])
 
-                
+                f = open("log.txt", "a")
+                f.write("\n--> Libro actualizado ("+str(datetime.now())+")\n")
+                f.write("LIBRO ORIGINAL: "+str(libro)+"\n")
+                f.write("LIBRO ACTUALIZADO: "+str(libroUpdated)+"\n\n")
+                f.close()
 
             elif event == 'Delete':
                 mb.showinfo("Información",
@@ -178,6 +193,11 @@ class Interfaz:
                 headi = [str(data[0][x]) +
                          '     ..' for x in range(len(data[0]))]
                 window.FindElement('TABLE').update(values=data[1:][:])
+
+                f = open("log.txt", "a")
+                f.write("\n--> Libro Eliminado ("+str(datetime.now())+")\n")
+                f.write("LIBRO: "+str(libro)+"\n\n")
+                f.close()
 
             elif event == 'Print All':
                 mb.showinfo("Información",
@@ -208,6 +228,7 @@ class Interfaz:
                 window.FindElement('-AUTOR-').update('')
                 window.FindElement('-GENERO-').update('')
                 window.FindElement('-CANTIDAD-').update('')
+
         # Cierra el programa al cerrar la ventana
         window.close()
 
