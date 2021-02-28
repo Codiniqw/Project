@@ -4,6 +4,7 @@ from tkinter import messagebox as mb
 from MongoConect import Conector
 import pymongo
 from Tabladatos import make_table
+from Tabladatos import corregircol
 from datetime import datetime
 
 
@@ -178,8 +179,9 @@ class Interfaz:
                 selected_row = window.Element('TABLE').SelectedRows[0]
                 for libro in mycol.find({'col': (selected_row+1)}):
                     print(libro)
-
                 mycol.delete_one(libro)
+                corregircol()
+                                    
 
                 #LIMPIAMOS LOS CAMPOS
                 window.FindElement('-ISBN-').update('')
@@ -193,7 +195,6 @@ class Interfaz:
                 headi = [str(data[0][x]) +
                          '     ..' for x in range(len(data[0]))]
                 window.FindElement('TABLE').update(values=data[1:][:])
-
                 f = open("log.txt", "a")
                 f.write("\n--> Libro Eliminado ("+str(datetime.now())+")\n")
                 f.write("LIBRO: "+str(libro)+"\n\n")
