@@ -1,14 +1,12 @@
 from tkinter import *
 import PySimpleGUI as sg 
-from tkinter import messagebox as mb
 from MongoConect import Conector
 import pymongo
 from Tabladatos import make_table
 from Tabladatos import corregircol
 from datetime import datetime
 from tkinter import messagebox as MessageBox
-
-
+from getpass import getuser
 
 class Interfaz:
     
@@ -36,7 +34,7 @@ class Interfaz:
 
         
         f = open("log.txt", "a")
-        f.write("\n--> Log History info ("+str(datetime.now())+" Aplicacion iniciada)\n")
+        f.write("\n--> Log History info ("+str(datetime.now())+" Aplicacion iniciada) usaurio: "+getuser()+"\n")
         f.close()
 
         # ------ Make the Table Data ------
@@ -189,7 +187,6 @@ class Interfaz:
                     mycol.delete_one(libro)
                     corregircol()
                                         
-
                     #LIMPIAMOS LOS CAMPOS
                     window.FindElement('-ISBN-').update('')
                     window.FindElement('-TITULO-').update('')
@@ -210,13 +207,13 @@ class Interfaz:
                     MessageBox.showwarning("Alerta", "Seleccione el libro a eliminar")
 
             elif event == 'Print All':
-                mb.showinfo("Información",
+                MessageBox.showinfo("Información",
                             "Aquí se llamará el método ImprimirTodo")
             elif event == 'HACER':
-                mb.showinfo("Información",
+                MessageBox.showinfo("Información",
                             "Aquí se llamará el método hacer")
             elif event == 'DESHACER':
-                mb.showinfo("Información",
+                MessageBox.showinfo("Información",
                             "Aquí se llamará el método deshacer")
             elif event == 'TABLE':
                 selected_row = window.Element('TABLE').SelectedRows[0]
