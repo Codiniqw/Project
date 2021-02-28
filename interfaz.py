@@ -6,6 +6,7 @@ import pymongo
 from Tabladatos import make_table
 from Tabladatos import corregircol
 from datetime import datetime
+from tkinter import messagebox as MessageBox
 
 
 
@@ -85,120 +86,128 @@ class Interfaz:
             if event == sg.WINDOW_CLOSED or event == 'close':
                 break
             elif event=='add New':
-                #OBTENEMOS LOS VALORES INGRESADOS POR EL USUARIO
-                ISBN=window['-ISBN-'].Get()
-                Titulo = window['-TITULO-'].Get()
-                Autor = window['-AUTOR-'].Get()
-                Genero = window['-GENERO-'].Get()
-                Cantidad=window['-CANTIDAD-'].Get()
-                Col= mycol.count()+1
-                #GUARDAMOS LA INFORMACION EN UN JSON
-                libro = {
-                    'col': Col,
-                    'isbn': ISBN,
-                    'titulo': Titulo,
-                    'autor': Autor,
-                    'genero': Genero,
-                    'cantidad': Cantidad
-                }
-                #NOS CONECTAMOS A LA BASE DE DATOS Y AGREGAMOS EL JSON SI NO TIENE VALORES NULOS
-                conexion = Conector()
-                connect = conexion.conector()
-                resultado = connect.libros.insert_one(libro)
-                # IMPRIMIMOS EL JSON EN CONSOLA
-                print(libro)
-                #LIMPIAMOS LOS CAMPOS
-                window.FindElement('-ISBN-').update('')
-                window.FindElement('-TITULO-').update('')
-                window.FindElement('-AUTOR-').update('')
-                window.FindElement('-GENERO-').update('')
-                window.FindElement('-CANTIDAD-').update('')
-                #ACTUALIZAMOS LA TABLA
-                data = make_table(num_rows=mycol.count())
-                headi = [str(data[0][x])+'     ..' for x in range(len(data[0]))]
-                window.FindElement('TABLE').update(values=data[1:][:])
 
-                f = open("log.txt", "a")
-                f.write("\n--> Nuevo libro agregado ("+str(datetime.now())+")\n")
-                f.write("LIBRO: "+str(libro)+"\n\n")
-                f.close()
-                
-            elif event == 'Update':
-                myclient = pymongo.MongoClient("mongodb://localhost:27017/")
-                mydb = myclient["biblioteca"]
-                mycol = mydb["libros"]
-
-                selected_row = window.Element('TABLE').SelectedRows[0]
-                for libro in mycol.find({'col': (selected_row+1)}):
-                    print(libro)
-
-                ISBN = window['-ISBN-'].Get()
-                Titulo = window['-TITULO-'].Get()
-                Autor = window['-AUTOR-'].Get()
-                Genero = window['-GENERO-'].Get()
-                Cantidad = window['-CANTIDAD-'].Get()
-
-                libroUpdated = {"$set":
-                {
-                    'col': (selected_row+1),
-                    'isbn': ISBN,
-                    'titulo': Titulo,
-                    'autor': Autor,
-                    'genero': Genero,
-                    'cantidad': Cantidad
+                if window.FindElement('-ISBN-').Get() and window.FindElement('-TITULO-').Get() and window.FindElement('-AUTOR-').Get() and window.FindElement('-GENERO-').Get() and window.FindElement('-CANTIDAD-').Get() != '':
+                    #OBTENEMOS LOS VALORES INGRESADOS POR EL USUARIO
+                    ISBN=window['-ISBN-'].Get()
+                    Titulo = window['-TITULO-'].Get()
+                    Autor = window['-AUTOR-'].Get()
+                    Genero = window['-GENERO-'].Get()
+                    Cantidad=window['-CANTIDAD-'].Get()
+                    Col= mycol.count()+1
+                    #GUARDAMOS LA INFORMACION EN UN JSON
+                    libro = {
+                        'col': Col,
+                        'isbn': ISBN,
+                        'titulo': Titulo,
+                        'autor': Autor,
+                        'genero': Genero,
+                        'cantidad': Cantidad
                     }
-                }
-                x = mycol.update_one(libro, libroUpdated)
+                    #NOS CONECTAMOS A LA BASE DE DATOS Y AGREGAMOS EL JSON SI NO TIENE VALORES NULOS
+                    conexion = Conector()
+                    connect = conexion.conector()
+                    resultado = connect.libros.insert_one(libro)
+                    # IMPRIMIMOS EL JSON EN CONSOLA
+                    print(libro)
+                    #LIMPIAMOS LOS CAMPOS
+                    window.FindElement('-ISBN-').update('')
+                    window.FindElement('-TITULO-').update('')
+                    window.FindElement('-AUTOR-').update('')
+                    window.FindElement('-GENERO-').update('')
+                    window.FindElement('-CANTIDAD-').update('')
+                    #ACTUALIZAMOS LA TABLA
+                    data = make_table(num_rows=mycol.count())
+                    headi = [str(data[0][x])+'     ..' for x in range(len(data[0]))]
+                    window.FindElement('TABLE').update(values=data[1:][:])
 
-                #LIMPIAMOS LOS CAMPOS
-                window.FindElement('-ISBN-').update('')
-                window.FindElement('-TITULO-').update('')
-                window.FindElement('-AUTOR-').update('')
-                window.FindElement('-GENERO-').update('')
-                window.FindElement('-CANTIDAD-').update('')
+                    f = open("log.txt", "a")
+                    f.write("\n--> Nuevo libro agregado ("+str(datetime.now())+")\n")
+                    f.write("LIBRO: "+str(libro)+"\n\n")
+                    f.close()
+                else:
+                    MessageBox.showwarning("Alerta", "Todos los datos son requeridos")
 
-                #ACTUALIZAMOS LA TABLA
-                data = make_table(num_rows=mycol.count())
-                headi = [str(data[0][x]) +
-                         '     ..' for x in range(len(data[0]))]
-                window.FindElement('TABLE').update(values=data[1:][:])
+            elif event == 'Update':
+                try:
+                    myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+                    mydb = myclient["biblioteca"]
+                    mycol = mydb["libros"]
 
-                f = open("log.txt", "a")
-                f.write("\n--> Libro actualizado ("+str(datetime.now())+")\n")
-                f.write("LIBRO ORIGINAL: "+str(libro)+"\n")
-                f.write("LIBRO ACTUALIZADO: "+str(libroUpdated)+"\n\n")
-                f.close()
+                    selected_row = window.Element('TABLE').SelectedRows[0]
+                    for libro in mycol.find({'col': (selected_row+1)}):
+                        print(libro)
+
+                    ISBN = window['-ISBN-'].Get()
+                    Titulo = window['-TITULO-'].Get()
+                    Autor = window['-AUTOR-'].Get()
+                    Genero = window['-GENERO-'].Get()
+                    Cantidad = window['-CANTIDAD-'].Get()
+
+                    libroUpdated = {"$set":
+                    {
+                        'col': (selected_row+1),
+                        'isbn': ISBN,
+                        'titulo': Titulo,
+                        'autor': Autor,
+                        'genero': Genero,
+                        'cantidad': Cantidad
+                        }
+                    }
+                    x = mycol.update_one(libro, libroUpdated)
+
+                    #LIMPIAMOS LOS CAMPOS
+                    window.FindElement('-ISBN-').update('')
+                    window.FindElement('-TITULO-').update('')
+                    window.FindElement('-AUTOR-').update('')
+                    window.FindElement('-GENERO-').update('')
+                    window.FindElement('-CANTIDAD-').update('')
+
+                    #ACTUALIZAMOS LA TABLA
+                    data = make_table(num_rows=mycol.count())
+                    headi = [str(data[0][x]) +
+                            '     ..' for x in range(len(data[0]))]
+                    window.FindElement('TABLE').update(values=data[1:][:])
+
+                    f = open("log.txt", "a")
+                    f.write("\n--> Libro actualizado ("+str(datetime.now())+")\n")
+                    f.write("LIBRO ORIGINAL: "+str(libro)+"\n")
+                    f.write("LIBRO ACTUALIZADO: "+str(libroUpdated)+"\n\n")
+                    f.close()
+                except:
+                    MessageBox.showwarning("Alerta", "Seleccione el libro a actualizar")
 
             elif event == 'Delete':
-                mb.showinfo("Información",
-                            "El libro fué eliminado")
-                myclient = pymongo.MongoClient("mongodb://localhost:27017/")
-                mydb = myclient["biblioteca"]
-                mycol = mydb["libros"]
+                try:
+                    myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+                    mydb = myclient["biblioteca"]
+                    mycol = mydb["libros"]
 
-                selected_row = window.Element('TABLE').SelectedRows[0]
-                for libro in mycol.find({'col': (selected_row+1)}):
-                    print(libro)
-                mycol.delete_one(libro)
-                corregircol()
-                                    
+                    selected_row = window.Element('TABLE').SelectedRows[0]
+                    for libro in mycol.find({'col': (selected_row+1)}):
+                        print(libro)
+                    mycol.delete_one(libro)
+                    corregircol()
+                                        
 
-                #LIMPIAMOS LOS CAMPOS
-                window.FindElement('-ISBN-').update('')
-                window.FindElement('-TITULO-').update('')
-                window.FindElement('-AUTOR-').update('')
-                window.FindElement('-GENERO-').update('')
-                window.FindElement('-CANTIDAD-').update('')
+                    #LIMPIAMOS LOS CAMPOS
+                    window.FindElement('-ISBN-').update('')
+                    window.FindElement('-TITULO-').update('')
+                    window.FindElement('-AUTOR-').update('')
+                    window.FindElement('-GENERO-').update('')
+                    window.FindElement('-CANTIDAD-').update('')
 
-                #ACTUALIZAMOS LA TABLA
-                data = make_table(num_rows=mycol.count())
-                headi = [str(data[0][x]) +
-                         '     ..' for x in range(len(data[0]))]
-                window.FindElement('TABLE').update(values=data[1:][:])
-                f = open("log.txt", "a")
-                f.write("\n--> Libro Eliminado ("+str(datetime.now())+")\n")
-                f.write("LIBRO: "+str(libro)+"\n\n")
-                f.close()
+                    #ACTUALIZAMOS LA TABLA
+                    data = make_table(num_rows=mycol.count())
+                    headi = [str(data[0][x]) +
+                            '     ..' for x in range(len(data[0]))]
+                    window.FindElement('TABLE').update(values=data[1:][:])
+                    f = open("log.txt", "a")
+                    f.write("\n--> Libro Eliminado ("+str(datetime.now())+")\n")
+                    f.write("LIBRO: "+str(libro)+"\n\n")
+                    f.close()
+                except:
+                    MessageBox.showwarning("Alerta", "Seleccione el libro a eliminar")
 
             elif event == 'Print All':
                 mb.showinfo("Información",

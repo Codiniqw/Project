@@ -268,3 +268,73 @@ LIBRO: {'col': 2, 'isbn': '86685455', 'titulo': 'De la tierra a la luna', 'autor
 --> Libro Eliminado (2021-02-28 11:16:03.103412)
 LIBRO: {'_id': ObjectId('603bceaea41e18ad500b1b8d'), 'col': 1, 'isbn': '56265', 'titulo': 'vientos del invierno', 'autor': 'George RMartin', 'genero': 'ciencia ficcion', 'cantidad': '2'}
 
+
+--> Log History info (2021-02-28 11:29:02.603630 Aplicacion iniciada)
+
+--> Log History info (2021-02-28 11:30:21.800768 Aplicacion iniciada)
+
+--> Log History info (2021-02-28 11:38:53.879096 Aplicacion iniciada)
+
+--> Log History info (2021-02-28 11:39:52.957898 Aplicacion iniciada)
+
+--> Log History info (2021-02-28 11:51:38.273795 Aplicacion iniciada)
+
+--> Log History info (2021-02-28 11:55:23.490842 Aplicacion iniciada)
+
+--> Log History info (2021-02-28 11:55:41.824905 Aplicacion iniciada)
+
+--> Log History info (2021-02-28 11:56:38.835619 Aplicacion iniciada)
+
+--> Log History info (2021-02-28 11:58:07.169861 Aplicacion iniciada)
+
+--> Log History info (2021-02-28 11:58:48.514017 Aplicacion iniciada)
+
+--> Log History info (2021-02-28 12:02:20.161899 Aplicacion iniciada)
+
+--> Log History info (2021-02-28 12:02:24.516256 Aplicacion iniciada)
+
+--> Log History info (2021-02-28 12:03:10.888668 Aplicacion iniciada)
+
+--> Log History info (2021-02-28 12:03:39.128077 Aplicacion iniciada)
+
+--> Log History info (2021-02-28 12:11:11.723672 Aplicacion iniciada)
+
+--> Log History info (2021-02-28 12:12:39.761560 Aplicacion iniciada)
+
+--> Log History info (2021-02-28 12:13:06.526055 Aplicacion iniciada)
+
+--> Nuevo libro agregado (2021-02-28 12:13:13.092280)
+LIBRO: {'col': 2, 'isbn': '3535', 'titulo': '', 'autor': '', 'genero': '', 'cantidad': '', '_id': ObjectId('603bdd390484b4fb4f317322')}
+
+
+--> Log History info (2021-02-28 12:14:01.350361 Aplicacion iniciada)
+
+--> Nuevo libro agregado (2021-02-28 12:14:04.924040)
+LIBRO: {'col': 3, 'isbn': '56353', 'titulo': '', 'autor': '', 'genero': '', 'cantidad': '', '_id': ObjectId('603bdd6c4178014a1253b89a')}
+
+
+--> Log History info (2021-02-28 12:17:08.432822 Aplicacion iniciada)
+
+--> Libro Eliminado (2021-02-28 12:17:30.085448)
+LIBRO: {'_id': ObjectId('603bdd6c4178014a1253b89a'), 'col': 3, 'isbn': '56353', 'titulo': '', 'autor': '', 'genero': '', 'cantidad': ''}
+
+
+--> Libro Eliminado (2021-02-28 12:17:33.172614)
+LIBRO: {'_id': ObjectId('603bdd390484b4fb4f317322'), 'col': 2, 'isbn': '3535', 'titulo': '', 'autor': '', 'genero': '', 'cantidad': ''}
+
+
+--> Log History info (2021-02-28 12:21:02.893749 Aplicacion iniciada)
+
+--> Log History info (2021-02-28 12:21:07.709054 Aplicacion iniciada)
+
+--> Log History info (2021-02-28 12:21:29.865828 Aplicacion iniciada)
+
+--> Log History info (2021-02-28 12:21:59.752927 Aplicacion iniciada)
+
+--> Log History info (2021-02-28 12:23:51.030157 Aplicacion iniciada)
+
+--> Log History info (2021-02-28 12:27:55.866297 Aplicacion iniciada)
+
+--> Log History info (2021-02-28 12:29:25.767025 Aplicacion iniciada)
+
+--> Log History info (2021-02-28 12:29:50.453281 Aplicacion iniciada)
