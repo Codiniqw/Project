@@ -21,3 +21,14 @@ LIBRO ACTUALIZADO: {'$set': {'col': 4, 'isbn': '6562565', 'titulo': 'El Jugador'
 --> Libro Eliminado (2021-02-28 14:54:04.474693)
 LIBRO: {'_id': ObjectId('603c02b2768f2f2f573f570a'), 'col': 3, 'isbn': '562626', 'titulo': 'Mi lucha', 'autor': 'Adolph Hitler', 'genero': 'Cuento', 'cantidad': '1'}
 
+
+--> Log History info (2021-02-28 21:04:47.545899 Aplicacion iniciada) usaurio: alfar
+
+--> Libro actualizado (2021-02-28 21:05:05.157443)
+LIBRO ORIGINAL: {'_id': ObjectId('603c0290768f2f2f573f5704'), 'col': 2, 'isbn': '655465', 'titulo': 'El alph', 'autor': 'Jorge Luis Borges', 'genero': 'Cuento', 'cantidad': '5'}
+LIBRO ACTUALIZADO: {'$set': {'col': 2, 'isbn': '655465', 'titulo': 'El aleph', 'autor': 'Jorge Luis Borges', 'genero': 'Cuento', 'cantidad': '5'}}
+
+
+--> Nuevo libro agregado (2021-02-28 21:07:58.433213)
+LIBRO: {'col': 4, 'isbn': '2516545', 'titulo': 'Mi Lucha', 'autor': 'Adolph Hitler', 'genero': 'Autobiografico', 'cantidad': '1', '_id': ObjectId('603c5a8e6be7b18422590b50')}
+

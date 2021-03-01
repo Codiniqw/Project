@@ -48,42 +48,4 @@ def corregircol():
         myquery = { "col": { "$gt": i } }
         newvalues =  { "$inc": {"col":-1} }
         x = mycol.update_one(myquery, newvalues)
-# ------ Make the Table Data ------
-    '''data = make_table(num_rows=mycol.count())
-    headings = [str(data[0][x])+'     ..' for x in range(len(data[0]))]
 
-    # ------ Window Layout ------
-    layout = [[sg.Table(values=data[1:][:], headings=headings, max_col_width=25,
-                        # background_color='light blue',
-                        auto_size_columns=True,
-                        display_row_numbers=False,
-                             justification='right',
-                        num_rows=10,
-                        alternating_row_color='lightyellow',
-                        key='-TABLE-',
-                        row_height=35,
-                        tooltip='This is a table')],
-              [sg.Button('Read'), sg.Button('Double'), sg.Button('Change Colors')],
-              [sg.Text('Read = read which rows are selected')],
-              [sg.Text('Double = double the amount of data in the table')],
-              [sg.Text('Change Colors = Changes the colors of rows 8 and 9')]]
-
-    # ------ Create Window ------
-    window = sg.Window('The Table Element', layout,
-                       # font='Helvetica 25',
-                       )
-
-    # ------ Event Loop ------
-    while True:
-        event, values = window.read()
-        print(event, values)
-        if event == sg.WIN_CLOSED:
-            break
-        if event == 'Double':
-            for i in range(len(data)):
-                data.append(data[i])
-            window['-TABLE-'].update(values=data)
-        elif event == 'Change Colors':
-            window['-TABLE-'].update(row_colors=((8, 'white', 'red'), (9, 'green')))
-
-    window.close()'''
