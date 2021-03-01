@@ -2,8 +2,7 @@ from tkinter import *
 import PySimpleGUI as sg 
 from MongoConect import Conector
 import pymongo
-from Tabladatos import make_table
-from Tabladatos import corregircol
+from Tabladatos import *
 from datetime import datetime
 from tkinter import messagebox as MessageBox
 from getpass import getuser
@@ -207,8 +206,9 @@ class Interfaz:
                     MessageBox.showwarning("Alerta", "Seleccione el libro a eliminar")
 
             elif event == 'Print All':
+                pdf(data=data)
                 MessageBox.showinfo("Información",
-                            "Aquí se llamará el método ImprimirTodo")
+                            "Se ha creado el pdf")
             elif event == 'HACER':
                 MessageBox.showinfo("Información",
                             "Aquí se llamará el método hacer")

@@ -3,6 +3,7 @@ import random
 import string
 from MongoConect import Conector
 import pymongo
+from fpdf import FPDF
 
 
 
@@ -49,3 +50,22 @@ def corregircol():
         newvalues =  { "$inc": {"col":-1} }
         x = mycol.update_one(myquery, newvalues)
 
+def pdf(data):
+    pdf=FPDF(format='letter', unit='in') 
+    pdf.add_page()
+    pdf.set_font('Arial','',10.0) 
+    
+    epw = pdf.w - 2*pdf.l_margin
+    col_width = epw/5
+    th = pdf.font_size
+    
+    pdf.set_font('Times','B',14.0) 
+    pdf.cell(epw, 0.0, 'Informe de libros', align='C')
+    pdf.set_font('Times','',10.0) 
+    pdf.ln(0.5)
+    
+    for row in data:
+        for datum in row:
+            pdf.cell(col_width, 2*th, str(datum), border=1)
+        pdf.ln(2*th)
+    pdf.output('reporte.pdf','F')

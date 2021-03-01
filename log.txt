@@ -32,3 +32,9 @@ LIBRO ACTUALIZADO: {'$set': {'col': 2, 'isbn': '655465', 'titulo': 'El aleph', '
 --> Nuevo libro agregado (2021-02-28 21:07:58.433213)
 LIBRO: {'col': 4, 'isbn': '2516545', 'titulo': 'Mi Lucha', 'autor': 'Adolph Hitler', 'genero': 'Autobiografico', 'cantidad': '1', '_id': ObjectId('603c5a8e6be7b18422590b50')}
 
+
+--> Log History info (2021-03-01 17:49:29.263534 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Log History info (2021-03-01 17:49:59.813576 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Log History info (2021-03-01 17:50:59.212046 Aplicacion iniciada) usaurio: Codiniqw
