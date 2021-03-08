@@ -22,7 +22,6 @@ constraint df_ciudad default 'Consultar al proveedor' for ciudad,
 CONSTRAINT UQ_nombre UNIQUE (nombre),
 --Revisar creacion de index en la declaracion de la tabla--
 )
-
 --------------------------------------------------------------------------------------
 Create table producto (idProducto int identity(1,1),
 nombre varchar (30),
@@ -32,13 +31,13 @@ constraint UK_PRODUCTO primary key clustered(idProducto),
 --revisar creacion de la regla
 create rule Producto_precio as @precio>0,
 exec sp_bindrule Producto_precio, 'producto.precio')
------------------------------Se ha revisado hasta aquí--------------------------------
+-----------------------------Se ha revisado hasta aquï¿½--------------------------------
 
 
 ------------------------------------------------------------------------------------------
 create table categoria(IdCategoria int identity(1,1),
 nombre varchar(30),
-descripcion varchar(50),
+descripcion varchar(70),
 constraint UK_CATEGORIA primary key clustered (idCategoria))
 -----------------------------------------------------------------------------------------
 create unique nonclustered index categoria_nombre ON categoria(nombre)
@@ -56,8 +55,6 @@ constraint UK_CLIENTE primary key clustered(idCliente),
 constraint CK_cliente_CP check (cp like '[0-9][0-9][0-9][0-9][0-9]'))
 -----------------------------------------------------------------------------------------
 
-
-
 ----------------------------------------------------------------------------------------------
 
 create table vendedor(
@@ -65,11 +62,16 @@ idVendedor int identity(1,1),
 Nombre varchar(30),
 FehaContrato date,
 FechaNacimiento date,
-Escolaridad Varchar(30))
+Escolaridad Varchar(30),
+constraint UK_VENDEDOR primary key clustered (idVendedor),
+constraint CK_vendedor_Escolaridad check (escolaridad like 'primaria' or escolaridad like 'secundaria'),
+constraint RG_nombre_juan as @Nombre like 'juan%'
+
+)
 -------------------------------------------------------------------------------------------------
-alter table vendedor add constraint UK_VENDEDOR primary key clustered (idVendedor)--1
-alter table vendedor with nocheck add constraint CK_vendedor_Escolaridad check (escolaridad like 'primaria' or escolaridad like 'secundaria')
-create rule RG_nombre_juan as @Nombre like 'juan%' 
+alter table vendedor add --1
+alter table vendedor with nocheck add 
+create rule  
 exec sp_bindrule RG_nombre_juan, 'vendedor.Nombre' 
 ----------------------------------------------------------------------------------------------------
 create table venta(
@@ -79,15 +81,17 @@ total int,
 descuento varchar(4),
 idVendedor int,
 idCliente int,
-idProducto int)
+idProducto int,
+constraint UK_VENTA primary key clustered(idVenta),
+constraint FK_idVendedor foreign key (idVendedor) references vendedor(idVendedor),
+constraint FK_idCliente foreign key (idCliente) references cliente(idCliente),
+constraint FK_idCliente foreign key (idCliente) references cliente(idCliente),
+constraint FK_idproducto foreign key (idProducto) references producto(idProducto),
+constraint CK_fecha_mayorHOY check (fecha<getdate())
+constraint rule RG_venta_mayor0 as @total >0
+)
 ---------------------------------------------------------------------------------------------------------
-alter table venta add constraint UK_VENTA primary key clustered(idVenta)--1
-alter table venta add constraint FK_idVendedor foreign key (idVendedor) references vendedor(idVendedor)--2
-alter table venta add constraint FK_idCliente foreign key (idCliente) references cliente(idCliente)--2
-alter table venta add constraint FK_idproducto foreign key (idProducto) references producto(idProducto)--2
-alter table venta with nocheck add constraint CK_fecha_mayorHOY check (fecha<getdate())
-create rule RG_venta_mayor0 as @total >0 
-exec sp_bindrule RG_venta_mayor0, 'venta.total' 
+
 -------------------------------------------------------------------------------------------------
 select*from producto
 select*from proveedor
@@ -120,39 +124,39 @@ select*from proveedor
 -----------------------------------------------------------------------------------------------------------------
 --INSERTS--
 --PRODUCTOS
-INSERT INTO  producto VALUES('Marías',121,1)
+INSERT INTO  producto VALUES('Marï¿½as',121,1)
 INSERT INTO  producto VALUES('Emperador ',33,1)
 INSERT INTO  producto VALUES('Saladitas',56,1)
 INSERT INTO  producto VALUES('Chokis',69,1)
 INSERT INTO  producto VALUES('CRACKETS',170,1)
 INSERT INTO  producto VALUES('Mamut',37,0)
 INSERT INTO  producto VALUES('HotCakes',28,0)
-INSERT INTO  producto VALUES('Vualá',68,0)
+INSERT INTO  producto VALUES('Vualï¿½',68,0)
 INSERT INTO  producto VALUES('Surtido Rico',182,1)
 INSERT INTO  producto VALUES('Cremax de Nieve',98,1)
-INSERT INTO  producto VALUES('arcoíris',178,1)
+INSERT INTO  producto VALUES('arcoï¿½ris',178,1)
 INSERT INTO  producto VALUES('Galletas de Avena',47,0)
-INSERT INTO  producto VALUES('Canapé',130,0)
+INSERT INTO  producto VALUES('Canapï¿½',130,0)
 INSERT INTO  producto VALUES('Chocolatines',176,0)
 INSERT INTO  producto VALUES('Consen',156,1)
 INSERT INTO  producto VALUES('Rulecitos',155,1)
 INSERT INTO  producto VALUES('Aceites comestibles',81,1)
 INSERT INTO  producto VALUES('Aderezos',38,1)
-INSERT INTO  producto VALUES('Consomé',115,0)
+INSERT INTO  producto VALUES('Consomï¿½',115,0)
 INSERT INTO  producto VALUES('Crema de cacahuate',149,0)
-INSERT INTO  producto VALUES('Crema para café',164,0)
-INSERT INTO  producto VALUES('Puré de tomate',82,0)
-INSERT INTO  producto VALUES('Alimento para bebé',175,0)
+INSERT INTO  producto VALUES('Crema para cafï¿½',164,0)
+INSERT INTO  producto VALUES('Purï¿½ de tomate',82,0)
+INSERT INTO  producto VALUES('Alimento para bebï¿½',175,0)
 INSERT INTO  producto VALUES('Alimento para mascotas',126,0)
 INSERT INTO  producto VALUES('Atole',70,0)
 INSERT INTO  producto VALUES('Avena',77,0)
-INSERT INTO  producto VALUES('Azúcar',50,0)
-INSERT INTO  producto VALUES('Café',43,0)
+INSERT INTO  producto VALUES('Azï¿½car',50,0)
+INSERT INTO  producto VALUES('Cafï¿½',43,0)
 INSERT INTO  producto VALUES('Cereales',153,1)
-INSERT INTO  producto VALUES('Chile piquín',23,1)
+INSERT INTO  producto VALUES('Chile piquï¿½n',23,1)
 INSERT INTO  producto VALUES('Especias',184,1)
 INSERT INTO  producto VALUES('Flan en polvo',170,1)
-INSERT INTO  producto VALUES('Fórmulas infantiles',73,1)
+INSERT INTO  producto VALUES('Fï¿½rmulas infantiles',73,1)
 INSERT INTO  producto VALUES('Gelatinas en polvo',25,0)
 INSERT INTO  producto VALUES('Harina',199,1)
 INSERT INTO  producto VALUES('Mole',83,1)
@@ -161,21 +165,21 @@ INSERT INTO  producto VALUES('Salsas envasadas',112,0)
 INSERT INTO  producto VALUES('Sazonadores',139,1)
 INSERT INTO  producto VALUES('Sopas en sobre',100,1)
 INSERT INTO  producto VALUES('Cajeta',105,1)
-INSERT INTO  producto VALUES('Cátsup',101,1)
+INSERT INTO  producto VALUES('Cï¿½tsup',101,1)
 INSERT INTO  producto VALUES('Mayonesa',27,1)
 INSERT INTO  producto VALUES('Mermelada',149,1)
 INSERT INTO  producto VALUES('Miel',179,0)
-INSERT INTO  producto VALUES('Té',189,1)
+INSERT INTO  producto VALUES('Tï¿½',189,1)
 INSERT INTO  producto VALUES('Vinagre',40,1)
 INSERT INTO  producto VALUES('Huevo',154,1)
 INSERT INTO  producto VALUES('Pasta',73,0)
 INSERT INTO  producto VALUES('Aceitunas',192,0)
-INSERT INTO  producto VALUES('Champiñones',70,1)
-INSERT INTO  producto VALUES('Chícharos',194,1)
+INSERT INTO  producto VALUES('Champiï¿½ones',70,1)
+INSERT INTO  producto VALUES('Chï¿½charos',194,1)
 INSERT INTO  producto VALUES('Frijoles',88,1)
-INSERT INTO  producto VALUES('Frutas en almíbar',142,0)
+INSERT INTO  producto VALUES('Frutas en almï¿½bar',142,0)
 INSERT INTO  producto VALUES('Sardinas',101,1)
-INSERT INTO  producto VALUES('Atún en agua/aceite',124,0)
+INSERT INTO  producto VALUES('Atï¿½n en agua/aceite',124,0)
 INSERT INTO  producto VALUES('Chiles',38,1)
 INSERT INTO  producto VALUES('Ensaladas',188,1)
 INSERT INTO  producto VALUES('Granos de elote',177,1)
@@ -191,14 +195,14 @@ INSERT INTO  producto VALUES('Margarina',45,0)
 INSERT INTO  producto VALUES('Queso',175,0)
 INSERT INTO  producto VALUES('Papas',112,1)
 INSERT INTO  producto VALUES('Palomitas',33,1)
-INSERT INTO  producto VALUES('Frituras de maíz',191,1)
+INSERT INTO  producto VALUES('Frituras de maï¿½z',191,1)
 INSERT INTO  producto VALUES('Cacahuates',135,0)
 INSERT INTO  producto VALUES('Botanas saladas',178,0)
 INSERT INTO  producto VALUES('Barras alimenticias',197,1)
 INSERT INTO  producto VALUES('Nueces y semillas',123,1)
 INSERT INTO  producto VALUES('Papas',120,1)
 INSERT INTO  producto VALUES('Palomitas',117,1)
-INSERT INTO  producto VALUES('Frituras de maíz',153,1)
+INSERT INTO  producto VALUES('Frituras de maï¿½z',153,1)
 INSERT INTO  producto VALUES('Cacahuates',22,1)
 INSERT INTO  producto VALUES('Botanas saladas',95,0)
 INSERT INTO  producto VALUES('Barras alimenticias',55,1)
@@ -218,7 +222,7 @@ INSERT INTO  producto VALUES('Papas',129,0)
 INSERT INTO  producto VALUES('Limones',40,0)
 INSERT INTO  producto VALUES('Manzanas',110,1)
 INSERT INTO  producto VALUES('Naranjas',22,1)
-INSERT INTO  producto VALUES('Plátanos',32,0)
+INSERT INTO  producto VALUES('Plï¿½tanos',32,0)
 INSERT INTO  producto VALUES('Agua mineral',168,0)
 INSERT INTO  producto VALUES('Jarabes',20,0)
 INSERT INTO  producto VALUES('Jugos',95,0)
@@ -228,7 +232,7 @@ INSERT INTO  producto VALUES('Energetizantes',84,0)
 INSERT INTO  producto VALUES('Refrescos',39,0)
 INSERT INTO  producto VALUES('Bebidas preparadas',31,1)
 INSERT INTO  producto VALUES('Cerveza',56,0)
-INSERT INTO  producto VALUES('Anís',138,0)
+INSERT INTO  producto VALUES('Anï¿½s',138,0)
 INSERT INTO  producto VALUES('Brandy',117,1)
 INSERT INTO  producto VALUES('Ginebra',46,1)
 INSERT INTO  producto VALUES('Cordiales',187,0)
@@ -245,7 +249,7 @@ INSERT INTO  producto VALUES('Carnes y embutidos',162,1)
 INSERT INTO  producto VALUES('Salchichas',189,1)
 INSERT INTO  producto VALUES('Mortadela',130,1)
 INSERT INTO  producto VALUES('Tocino',49,0)
-INSERT INTO  producto VALUES('Jamón',196,0)
+INSERT INTO  producto VALUES('Jamï¿½n',196,0)
 INSERT INTO  producto VALUES('Manteca',168,1)
 INSERT INTO  producto VALUES('Chorizo',180,0)
 INSERT INTO  producto VALUES('Carne de puerco',137,0)
@@ -255,14 +259,14 @@ INSERT INTO  producto VALUES('Carnes y embutidos',196,1)
 INSERT INTO  producto VALUES('Salchichas',159,1)
 INSERT INTO  producto VALUES('Mortadela',112,0)
 INSERT INTO  producto VALUES('Tocino',110,1)
-INSERT INTO  producto VALUES('Jamón',79,1)
+INSERT INTO  producto VALUES('Jamï¿½n',79,1)
 INSERT INTO  producto VALUES('Manteca',167,1)
 INSERT INTO  producto VALUES('Chorizo',110,0)
 INSERT INTO  producto VALUES('Carne de puerco',175,0)
-INSERT INTO  producto VALUES('Toallas húmedas',40,1)
-INSERT INTO  producto VALUES('Aceite para bebé',195,1)
+INSERT INTO  producto VALUES('Toallas hï¿½medas',40,1)
+INSERT INTO  producto VALUES('Aceite para bebï¿½',195,1)
 INSERT INTO  producto VALUES('Toallas femeninas',176,1)
-INSERT INTO  producto VALUES('Algodón',76,1)
+INSERT INTO  producto VALUES('Algodï¿½n',76,1)
 INSERT INTO  producto VALUES('Tinte para el cabello',25,1)
 INSERT INTO  producto VALUES('Biberones',80,0)
 INSERT INTO  producto VALUES('Talco',156,0)
@@ -281,7 +285,7 @@ insert into proveedor values ('Alpura','4564 Lolita Circles',70,'Reforma','Quere
 insert into proveedor values ('Coca-cola','103 Klocko Freeway ',1200,'Reforma','Queretaro',75385,53)
 insert into proveedor values ('Pepsi','560 Warren Wall ',23,'Reforma','Queretaro',75385,81)
 insert into proveedor values ('Nescafe','160 Walker Ramp ',59,'Reforma','Queretaro',75385,75)
-insert into proveedor values ('La costeña','8997 Noelia Green ',58,'Reforma','Queretaro',75385,29)
+insert into proveedor values ('La costeï¿½a','8997 Noelia Green ',58,'Reforma','Queretaro',75385,29)
 insert into proveedor values ('Moderna','90701 Murl Green ',60,'Reforma','Queretaro',75385,71)
 insert into proveedor values ('Jumex','12800 Hassan Route ',569,'Reforma','Queretaro',75385,31)
 insert into proveedor values ('Pedigri','95275 Rowe Forge ',200,'Reforma','Queretaro',75385,65)
@@ -311,25 +315,25 @@ insert into categoria values ('shampoos','para cabello seco, grasoso y con caspa
 insert into categoria values ('alimento para mascotas','a granel,lo que guste')
 
 --CLIENTE
-INSERT INTO  cliente VALUES('Óscar','Altenwerth Crossing',13,'Cimatario','Aguascalientes',76093,'Óscar@gmail.com')
+INSERT INTO  cliente VALUES('ï¿½scar','Altenwerth Crossing',13,'Cimatario','Aguascalientes',76093,'ï¿½scar@gmail.com')
 INSERT INTO  cliente VALUES('Ernesto','Koepp Highway',71,'Colonia El Pueblito','Ensenada',76034,'Ernesto@gmail.com')
-INSERT INTO  cliente VALUES('Carlos','Dickens Fords',62,'Zibatá','Ciudad de México',76097,'Carlos@gmail.com')
+INSERT INTO  cliente VALUES('Carlos','Dickens Fords',62,'Zibatï¿½','Ciudad de Mï¿½xico',76097,'Carlos@gmail.com')
 INSERT INTO  cliente VALUES('Ada','Christiansen Lodge',14,'Zakia','Monterrey',76080,'Ada@gmail.com')
 INSERT INTO  cliente VALUES('Luis','Gaylord Park',38,'El Mirador','Celaya',76001,'Luis@gmail.com')
 INSERT INTO  cliente VALUES('Aleyda','Clement Parkways',13,'Sonterra','Guanajuato',76072,'Aleyda@gmail.com')
 INSERT INTO  cliente VALUES('Adalia','Ila Turnpike',82,'Jurica','Queretaro',76005,'Adalia@gmail.com')
 INSERT INTO  cliente VALUES('Adolfa','Miller Forge',50,'Juriquilla','Queretaro',76097,'Adolfa@gmail.com')
-INSERT INTO  cliente VALUES('Delmira','Gaston Inlet',84,'Zibatá','Monterrey',76044,'Delmira@gmail.com')
+INSERT INTO  cliente VALUES('Delmira','Gaston Inlet',84,'Zibatï¿½','Monterrey',76044,'Delmira@gmail.com')
 INSERT INTO  cliente VALUES('Delmiro','Schuster Parkways',73,'Sonterra','Aguascalientes',76001,'Delmiro@gmail.com')
 INSERT INTO  cliente VALUES('Eadmunda','Burley Views',90,'Milenio III','Acapulco',76025,'Eadmunda@gmail.com')
 INSERT INTO  cliente VALUES('Bianca',' Isabel Harbors',53,'Juriquilla','Tijuana',76008,'Bianca@gmail.com')
-INSERT INTO  cliente VALUES('Bertrán','Ankunding Courts',28,'El Mirador','Guadalajara',76049,'Bertrán@gmail.com')
+INSERT INTO  cliente VALUES('Bertrï¿½n','Ankunding Courts',28,'El Mirador','Guadalajara',76049,'Bertrï¿½n@gmail.com')
 INSERT INTO  cliente VALUES('Berto','Darrin Loop',76,'El Refugio','Queretaro',76082,'Berto@gmail.com')
 INSERT INTO  cliente VALUES('Bernarda','Ernser Camp',103,'Colonia Cimatario','Monterrey',76063,'Bernarda@gmail.com')
 INSERT INTO  cliente VALUES('Bernardino','Brad Hills',33,'Colonia El Pueblito','Celaya',76005,'Bernardino@gmail.com')
 INSERT INTO  cliente VALUES('Beltrando','Porfirio Diaz ',67,'Zakia','Guanajuato',76048,'Beltrando@gmail.com')
 INSERT INTO  cliente VALUES('Beltrana','Darrin Loop',4,'El Refugio','Aguascalientes',76082,'Beltrana@gmail.com')
-INSERT INTO  cliente VALUES('Hermelanda','Ankunding Courts',87,'El Mirador','Ciudad de México',76025,'Hermelanda@gmail.com')
+INSERT INTO  cliente VALUES('Hermelanda','Ankunding Courts',87,'El Mirador','Ciudad de Mï¿½xico',76025,'Hermelanda@gmail.com')
 
 --VENDEDOR
 insert into vendedor values('Juan Carlos','10-10-2020','7-7-2000','Primaria');
