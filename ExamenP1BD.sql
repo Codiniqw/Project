@@ -1,48 +1,49 @@
-use S162
+
 drop database TiendaLosJuanes
 create database TiendaLosJuanes
 USE TiendaLosJuanes
 
 --Abarrotes los juanchos--
+
+-----------------------------------
+--CREACION DE LA TABLA PROVEEDOR
+-----------------------------------
 create table proveedor (
 idProveedor int identity(1,1), 
 nombre varchar (30),
-calle varchar(30), 
-numero int, 
+calle varchar(30) default 'Sin calle', 
+numero int default 0, 
 colonia varchar (30),
-ciudad varchar(30),
+ciudad varchar(30) default 'Consultar al proveedor',
 cp int,
 idProducto int,
-constraint UK_PROVEDOR primary key clustered(idProveedor),
-constraint FK_idProducto foreign key (idProducto) references producto(idProducto),
-constraint VP_numero default 0,
-constraint df_Calle default 'Sin calle' for calle,
+constraint UK_PROVEDOR primary key (idProveedor),
 constraint CK_proveedor_CP check (cp like '[0-9][0-9][0-9][0-9][0-9]'),
-constraint df_ciudad default 'Consultar al proveedor' for ciudad,
 CONSTRAINT UQ_nombre UNIQUE (nombre),
---Revisar creacion de index en la declaracion de la tabla--
+constraint FK_idProducto foreign key (idProducto) references producto(idProducto) --SE EJECUTA UNA VEZ CREADA LA TABLA PRODUCTO
 )
---------------------------------------------------------------------------------------
+
+-----------------------------------
+--CREACION DE LA TABLA PRODUCTO
+-----------------------------------
 Create table producto (idProducto int identity(1,1),
 nombre varchar (30),
 precio money, 
 existencia bit,
 constraint UK_PRODUCTO primary key clustered(idProducto),
---revisar creacion de la regla
-create rule Producto_precio as @precio>0,
-exec sp_bindrule Producto_precio, 'producto.precio')
------------------------------Se ha revisado hasta aqu�--------------------------------
-
-
-------------------------------------------------------------------------------------------
-create table categoria(IdCategoria int identity(1,1),
-nombre varchar(30),
+constraint Producto_precio check (precio>0)
+)
+-------------------------------------
+--CREACION DE LA TABLA CATEGORIA
+-------------------------------------
+create table categoria(IdCategoria int identity(1,1) unique,
+nombre varchar(30) unique,
 descripcion varchar(70),
-constraint UK_CATEGORIA primary key clustered (idCategoria))
------------------------------------------------------------------------------------------
-create unique nonclustered index categoria_nombre ON categoria(nombre)
------------------------------------------------------------------------------------------
-
+constraint UK_CATEGORIA primary key clustered (idCategoria)
+)
+-------------------------------------------------------
+--CREACION DE LA TABLA CLIENTE
+-------------------------------------------------------
 create table cliente (idCliente int identity(1,1),
 nombre varchar (30), 
 calle varchar(30), 
@@ -53,9 +54,9 @@ cp int,
 mail varchar(30),
 constraint UK_CLIENTE primary key clustered(idCliente),
 constraint CK_cliente_CP check (cp like '[0-9][0-9][0-9][0-9][0-9]'))
------------------------------------------------------------------------------------------
-
-----------------------------------------------------------------------------------------------
+----------------------------------------------------------
+--CREACION DE LA TABLA VENDEDOR
+----------------------------------------------------------
 
 create table vendedor(
 idVendedor int identity(1,1),
@@ -65,15 +66,11 @@ FechaNacimiento date,
 Escolaridad Varchar(30),
 constraint UK_VENDEDOR primary key clustered (idVendedor),
 constraint CK_vendedor_Escolaridad check (escolaridad like 'primaria' or escolaridad like 'secundaria'),
-constraint RG_nombre_juan as @Nombre like 'juan%'
-
+constraint RG_nombre_juan check (nombre like 'juan%')
 )
--------------------------------------------------------------------------------------------------
-alter table vendedor add --1
-alter table vendedor with nocheck add 
-create rule  
-exec sp_bindrule RG_nombre_juan, 'vendedor.Nombre' 
-----------------------------------------------------------------------------------------------------
+------------------------------------------
+--CREACION DE LA TABLA VENTA
+------------------------------------------
 create table venta(
 idVenta int identity(1,1),
 fecha datetime,
@@ -85,13 +82,12 @@ idProducto int,
 constraint UK_VENTA primary key clustered(idVenta),
 constraint FK_idVendedor foreign key (idVendedor) references vendedor(idVendedor),
 constraint FK_idCliente foreign key (idCliente) references cliente(idCliente),
-constraint FK_idCliente foreign key (idCliente) references cliente(idCliente),
-constraint FK_idproducto foreign key (idProducto) references producto(idProducto),
-constraint CK_fecha_mayorHOY check (fecha<getdate())
-constraint rule RG_venta_mayor0 as @total >0
+constraint FK_idproducto1 foreign key (idProducto) references producto(idProducto),
+constraint CK_fecha_mayorHOY check (fecha<getdate()),
+constraint RG_venta_mayor0 check (total >0)
 )
 ---------------------------------------------------------------------------------------------------------
-
+--SE REVISA LA CORRECTA CREACION DE LAS TABLAS
 -------------------------------------------------------------------------------------------------
 select*from producto
 select*from proveedor
@@ -100,7 +96,8 @@ select*from cliente
 select*from vendedor
 select*from venta
 ----------------------------------------------------------------------------------------------------------
---INSERTS PARA REVISAR FUNCIONAMIENTO
+--INSERTS PARA REVISAR FUNCIONAMIENTO DE LAS RESTRICCIONES
+---------------------------------------------------------------------------------------------------------
 INSERT INTO  producto VALUES('Helado de chocolate',-12,1) --no se aceptan precios menores a cero
 select*from producto
 insert into proveedor values ('Turin','calle 208 ',250,'Reforma','Queretaro',763859,23)--El codigo postal solo puede contener 5digitos
@@ -116,25 +113,46 @@ select*from vendedor
 INSERT INTO venta Values ('2021-05-06',342,'4',6,10,50)--la fecha de la venta no debe ser mayor a hoy
 INSERT INTO venta Values ('2020-05-06',-30,'4',6,10,50)--La venta no debe ser menor a cero
 select*from venta
---CHECAR DEFAULTS
+-------------------------------------------
+--CHECAR QUE LOS DEFAULTS FUNCIONEN
+-------------------------------------------
 insert into proveedor (nombre,numero,colonia,ciudad,cp,idProducto) values ('Corona',250,'Reforma','Queretaro',76385,23)--calle puesto como SIN CALLE
 insert into proveedor (nombre,calle,colonia,ciudad,cp,idProducto) values ('Carnes del centro','Zafiro','Reforma','Queretaro',76258,89)--Numero puesto como 0
 insert into proveedor (nombre,numero,calle,colonia,cp,idProducto) values ('Bonafont',125,'Zafiro','Reforma',76258,89) -- ciudad puesta como Consultar al proveedor
 select*from proveedor
+
+---------------------------------------------------------------------------
+--JOINS SIMPLES
+---------------------------------------------------------------------------
+--PROVEEDOR <-> PRODUCTO
+select producto.nombre as Producto,proveedor.nombre as Proveedor,producto.precio from producto as producto
+inner join proveedor as proveedor on proveedor.idProveedor=producto.idProducto
+
+select producto.nombre as Producto,proveedor.nombre as Proveedor,producto.precio from producto as producto
+left join proveedor as proveedor on proveedor.idProveedor=producto.idProducto
+
+select producto.nombre as Producto,proveedor.nombre as Proveedor,producto.precio from producto as producto
+right join proveedor as proveedor on proveedor.idProveedor=producto.idProducto
+
+select producto.nombre as Producto,proveedor.nombre as Proveedor,producto.precio from producto as producto
+full join proveedor as proveedor on proveedor.idProveedor=producto.idProducto
+
+
 -----------------------------------------------------------------------------------------------------------------
---INSERTS--
+--INSERTAR DATOS--
+----------------------------------------------------------------------------------------------------------------
 --PRODUCTOS
-INSERT INTO  producto VALUES('Mar�as',121,1)
+INSERT INTO  producto VALUES('Marias',121,1)
 INSERT INTO  producto VALUES('Emperador ',33,1)
 INSERT INTO  producto VALUES('Saladitas',56,1)
 INSERT INTO  producto VALUES('Chokis',69,1)
 INSERT INTO  producto VALUES('CRACKETS',170,1)
 INSERT INTO  producto VALUES('Mamut',37,0)
 INSERT INTO  producto VALUES('HotCakes',28,0)
-INSERT INTO  producto VALUES('Vual�',68,0)
+INSERT INTO  producto VALUES('Vuala',68,0)
 INSERT INTO  producto VALUES('Surtido Rico',182,1)
 INSERT INTO  producto VALUES('Cremax de Nieve',98,1)
-INSERT INTO  producto VALUES('arco�ris',178,1)
+INSERT INTO  producto VALUES('arcoiris',178,1)
 INSERT INTO  producto VALUES('Galletas de Avena',47,0)
 INSERT INTO  producto VALUES('Canap�',130,0)
 INSERT INTO  producto VALUES('Chocolatines',176,0)
