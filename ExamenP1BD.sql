@@ -20,7 +20,7 @@ idProducto int,
 constraint UK_PROVEDOR primary key (idProveedor),
 constraint CK_proveedor_CP check (cp like '[0-9][0-9][0-9][0-9][0-9]'),
 CONSTRAINT UQ_nombre UNIQUE (nombre),
-constraint FK_idProducto foreign key (idProducto) references producto(idProducto) --SE EJECUTA UNA VEZ CREADA LA TABLA PRODUCTO
+constraint FK_idProducto foreign key (idProducto) references producto(idProducto)on update cascade on delete casacade --SE EJECUTA UNA VEZ CREADA LA TABLA PRODUCTO
 )
 
 -----------------------------------
@@ -80,9 +80,9 @@ idVendedor int,
 idCliente int,
 idProducto int,
 constraint UK_VENTA primary key clustered(idVenta),
-constraint FK_idVendedor foreign key (idVendedor) references vendedor(idVendedor),
-constraint FK_idCliente foreign key (idCliente) references cliente(idCliente),
-constraint FK_idproducto1 foreign key (idProducto) references producto(idProducto),
+constraint FK_idVendedor foreign key (idVendedor) references vendedor(idVendedor) on update cascade on delete casacade,
+constraint FK_idCliente foreign key (idCliente) references cliente(idCliente) on update cascade on delete casacade,
+constraint FK_idproducto1 foreign key (idProducto) references producto(idProducto) on update cascade on delete casacade,
 constraint CK_fecha_mayorHOY check (fecha<getdate()),
 constraint RG_venta_mayor0 check (total >0)
 )
@@ -125,17 +125,17 @@ select*from proveedor
 --JOINS SIMPLES
 ---------------------------------------------------------------------------
 --PROVEEDOR <-> PRODUCTO
-select producto.nombre as Producto,proveedor.nombre as Proveedor,producto.precio from producto as producto
-inner join proveedor as proveedor on proveedor.idProveedor=producto.idProducto
+select p.nombre as Producto,pr.nombre as Proveedor,p.precio from producto as p
+inner join proveedor as pr on pr.idProveedor=p.idProducto
 
-select producto.nombre as Producto,proveedor.nombre as Proveedor,producto.precio from producto as producto
-left join proveedor as proveedor on proveedor.idProveedor=producto.idProducto
+select p.nombre as Producto,pr.nombre as Proveedor,p.precio from producto as p
+left join proveedor as pr on pr.idProveedor=p.idProducto
 
-select producto.nombre as Producto,proveedor.nombre as Proveedor,producto.precio from producto as producto
-right join proveedor as proveedor on proveedor.idProveedor=producto.idProducto
+select p.nombre as Producto,pr.nombre as Proveedor,p.precio from producto as p
+right join proveedor as pr on pr.idProveedor=p.idProducto
 
-select producto.nombre as Producto,proveedor.nombre as Proveedor,producto.precio from producto as producto
-full join proveedor as proveedor on proveedor.idProveedor=producto.idProducto
+select p.nombre as Producto,pr.nombre as Proveedor,p.precio from producto as p
+full join proveedor as pr on pr.idProveedor=p.idProducto
 
 
 -----------------------------------------------------------------------------------------------------------------
