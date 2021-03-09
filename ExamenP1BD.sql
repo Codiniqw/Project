@@ -20,7 +20,7 @@ idProducto int,
 constraint UK_PROVEDOR primary key (idProveedor),
 constraint CK_proveedor_CP check (cp like '[0-9][0-9][0-9][0-9][0-9]'),
 CONSTRAINT UQ_nombre UNIQUE (nombre),
-constraint FK_idProducto foreign key (idProducto) references producto(idProducto)on update cascade on delete casacade --SE EJECUTA UNA VEZ CREADA LA TABLA PRODUCTO
+constraint FK_idProducto foreign key (idProducto) references producto(idProducto)on update cascade on delete cascade --SE EJECUTA UNA VEZ CREADA LA TABLA PRODUCTO
 )
 
 -----------------------------------
@@ -80,9 +80,9 @@ idVendedor int,
 idCliente int,
 idProducto int,
 constraint UK_VENTA primary key clustered(idVenta),
-constraint FK_idVendedor foreign key (idVendedor) references vendedor(idVendedor) on update cascade on delete casacade,
-constraint FK_idCliente foreign key (idCliente) references cliente(idCliente) on update cascade on delete casacade,
-constraint FK_idproducto1 foreign key (idProducto) references producto(idProducto) on update cascade on delete casacade,
+constraint FK_idVendedor foreign key (idVendedor) references vendedor(idVendedor) on update cascade on delete cascade,
+constraint FK_idCliente foreign key (idCliente) references cliente(idCliente) on update cascade on delete cascade,
+constraint FK_idproducto1 foreign key (idProducto) references producto(idProducto) on update cascade on delete cascade,
 constraint CK_fecha_mayorHOY check (fecha<getdate()),
 constraint RG_venta_mayor0 check (total >0)
 )
