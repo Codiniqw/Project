@@ -416,3 +416,20 @@ INSERT INTO venta Values ('2004-12-02',4353,'7',6,19,47);
 INSERT INTO venta Values ('2005-05-05',543,'0',10,15,48);
 INSERT INTO venta Values ('2015-12-04',222,'0',8,8,49);
 INSERT INTO venta Values ('2015-05-06',342,'4',6,10,50);
+
+
+---------------------------------------------------------------------------
+--JOINS COMPLEJOS
+---------------------------------------------------------------------------
+select p.nombre as Producto,pr.nombre as Proveedor,p.precio from producto as p
+--PROVEEDOR <-> PRODUCTO <-> VENTAS
+inner join proveedor as pr on pr.idProveedor=p.idProducto
+
+select p.nombre as Producto,pr.nombre as Proveedor,p.precio from producto as p
+left join proveedor as pr on pr.idProveedor=p.idProducto
+
+select p.nombre as Producto,pr.nombre as Proveedor,p.precio from producto as p
+right join proveedor as pr on pr.idProveedor=p.idProducto
+
+select p.nombre as Producto,pr.nombre as Proveedor,p.precio from producto as p
+full join proveedor as pr on pr.idProveedor=p.idProducto
