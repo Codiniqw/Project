@@ -745,6 +745,10 @@ cross join proveedor as pr
  full join venta as v on pr.idProducto=v.idProducto
  full join cliente as c on v.idCliente=c.idCliente 
 
+ select p.nombre as Producto,pr.nombre as Proveedor, p.precio, c.nombre as cliente, v.fecha as "fecha de venta" from producto as p
+ cross join proveedor as pr 
+ cross join venta as v 
+ cross join cliente as c 
  
  ---------------------------------------------------------------------------
 --Todas las tablas juntas
