@@ -442,4 +442,10 @@ INSERT INTO venta Values ('2015-05-06',342,'4',6,10,50);
  full join proveedor as pr on pr.idProveedor=p.idProducto
  full join venta as v on pr.idProducto=v.idProducto
  full join cliente as c on v.idCliente=c.idCliente 
+
  
+ ---------------------------------------------------------------------------
+--Todas las tablas juntas
+---------------------------------------------------------------------------
+
+ select* from venta,cliente,proveedor,vendedor,categoria
