@@ -1,6 +1,7 @@
 
 drop database TiendaLosJuanes
 create database TiendaLosJuanes
+go
 USE TiendaLosJuanes
 
 --Abarrotes los juanchos--
@@ -421,15 +422,25 @@ INSERT INTO venta Values ('2015-05-06',342,'4',6,10,50);
 ---------------------------------------------------------------------------
 --JOINS COMPLEJOS
 ---------------------------------------------------------------------------
-select p.nombre as Producto,pr.nombre as Proveedor,p.precio from producto as p
---PROVEEDOR <-> PRODUCTO <-> VENTAS
-inner join proveedor as pr on pr.idProveedor=p.idProducto
-
-select p.nombre as Producto,pr.nombre as Proveedor,p.precio from producto as p
-left join proveedor as pr on pr.idProveedor=p.idProducto
-
-select p.nombre as Producto,pr.nombre as Proveedor,p.precio from producto as p
-right join proveedor as pr on pr.idProveedor=p.idProducto
-
-select p.nombre as Producto,pr.nombre as Proveedor,p.precio from producto as p
-full join proveedor as pr on pr.idProveedor=p.idProducto
+ --PROVEEDOR <-> PRODUCTO <-> VENTA <-> CLIENTE
+ select p.nombre as Producto,pr.nombre as Proveedor, p.precio, c.nombre as cliente, v.fecha as "fecha de venta" from producto as p
+ inner join proveedor as pr on pr.idProveedor=p.idProducto
+ inner join venta as v on pr.idProducto=v.idProducto
+ inner join cliente as c on v.idCliente=c.idCliente 
+ 
+ select p.nombre as Producto,pr.nombre as Proveedor, p.precio, c.nombre as cliente, v.fecha as "fecha de venta" from producto as p
+ left join proveedor as pr on pr.idProveedor=p.idProducto
+ left join venta as v on pr.idProducto=v.idProducto
+ left join cliente as c on v.idCliente=c.idCliente 
+ 
+ select p.nombre as Producto,pr.nombre as Proveedor, p.precio, c.nombre as cliente, v.fecha as "fecha de venta" from producto as p
+ right join proveedor as pr on pr.idProveedor=p.idProducto
+ right join venta as v on pr.idProducto=v.idProducto
+ right join cliente as c on v.idCliente=c.idCliente 
+ 
+ select p.nombre as Producto,pr.nombre as Proveedor, p.precio, c.nombre as cliente, v.fecha as "fecha de venta" from producto as p
+ full join proveedor as pr on pr.idProveedor=p.idProducto
+ full join venta as v on pr.idProducto=v.idProducto
+ full join cliente as c on v.idCliente=c.idCliente 
+ 
+ SELECT * FROM venta
