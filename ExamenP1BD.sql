@@ -1,16 +1,17 @@
 
 drop database TiendaLosJuanes
+go
 create database TiendaLosJuanes
 go
 USE TiendaLosJuanes
-
+go
 --Abarrotes los juanchos--
 
 -----------------------------------
 --CREACION DE UNA VARIABLE GLOBAL
 -----------------------------------
 exec sp_addtype precio,'MONEY'
-
+go
 -------------------------------------
 --CREACION DE LA TABLA CATEGORIA
 -------------------------------------
@@ -130,8 +131,8 @@ insert into categoria values ('shampoos','Para cabello seco, grasoso y con caspa
 insert into categoria values ('alimento para mascotas','pedigree,whiskas,purina,etc');
 insert into categoria values ('bebidas alcoholicas','cerveza,tequila,vodka,baileys,whisky');
 insert into categoria values ('bolleria industrial','tartas,bollos,galletas,donas');
-insert into categoria values ('productos de limpieza para casa','esponja,lejia,quitamanchas,cepillo para inodoro');
-insert into categoria values ('productos de limpieza para ropa','suavisante,activador de color,desengrasante,detergente en polvo');
+insert into categoria values ('productos limpieza para casa','esponja,lejia,quitamanchas,cepillo para inodoro');
+insert into categoria values ('productos limpieza para ropa','suavisante,activador de color,desengrasante,detergente en polvo');
 insert into categoria values ('refrescos','Coca cola,pepsi,Sprite,Squirt');
 insert into categoria values ('pizzas congeladas','pepperoni,hawaiana,carnes frias,4 quesos');
 insert into categoria values ('verduras','Hojas verde como lechuga,acelgas,endivias');
@@ -144,7 +145,7 @@ insert into categoria values ('pescaderia','sardina,salmon,merluza,bacalao');
 insert into categoria values ('mariscos','mejillon,camaron,cangrejo,langosta');
 insert into categoria values ('bebidas energeticas','boost,bang,monster,Red Bull');
 insert into categoria values ('frutas','De temporada');
-insert into categoria values ('alimentos enlatados','sardinas entomatadas,atun en aceite, chicharos,chiles en escabeche,elote');
+insert into categoria values ('alimentos enlatados','sardinas entomatadas,atun en aceite, chiles en escabeche,elote');
 insert into categoria values ('cigarrillos','Marlboro,Chesterfield,Benson & Hedges');
 insert into categoria values ('farmaceuticos','antibioticos,antihistaminicos,antiinflamatorios,etc');
 insert into categoria values ('productos de bebe','toallitas,pañales,tetina,crema');
@@ -161,7 +162,7 @@ insert into categoria values ('jugos','Jumex,Del Valle,Herdez,Florida 7');
 insert into categoria values ('cereales','A granel,lo que guste');
 insert into categoria values ('dulces','rises,carlos V,gomitas,bombones,etc');
 insert into categoria values ('barra desayunadora','chilaquiles,huevo con jamon,hot cakes,yogur');
-insert into categoria values ('barra de ensaladas','zanahoria rallada,col morada rallada,germen de alfalfa,pepino en rodajas');
+insert into categoria values ('barra de ensaladas','zanahoria rallada,col morada rallada,germen alfalfa,pepino en rodajas');
 insert into categoria values ('barra de comida','pure de papa,pollo en salsa,sushi,baguettes');
 
 ----------------------------------------------------------------------------------------------------------------
@@ -394,9 +395,9 @@ insert into proveedor values ('Amway','85575 Schuppe Junction ',1,'Reforma','Que
 insert into proveedor values ('Herbalife Nutrition','85575 Schuppe Junction ',1,'Reforma','Queretaro',77985,136)
 insert into proveedor values ('Avon Products Inc.','85575 Schuppe Junction ',1,'Reforma','Queretaro',77985,136)
 insert into proveedor values ('Vorwerk','85575 Schuppe Junction ',1,'Reforma','Queretaro',77985,136)
-insert into proveedor values ('Natura','85575 Schuppe Junction ',1,'Reforma','Queretaro',77985,136)
+insert into proveedor values ('Natura','85575 Schuppe Junction ',1,'Reforma','Queretaro',77985,156)
 insert into proveedor values ('Coway','85575 Schuppe Junction ',1,'Reforma','Queretaro',77985,136)
-insert into proveedor values ('Nu Skin','85575 Schuppe Junction ',1,'Reforma','Queretaro',77985,136)
+insert into proveedor values ('Nu Skin','85575 Schuppe Junction ',1,'Reforma','Queretaro',77985,146)
 insert into proveedor values ('Tupperware','85575 Schuppe Junction ',1,'Reforma','Queretaro',77985,136)
 insert into proveedor values ('Oriflame','85575 Schuppe Junction ',1,'Reforma','Queretaro',77985,136)
 insert into proveedor values ('Ambit Energy','85575 Schuppe Junction ',1,'Reforma','Queretaro',77985,136)
@@ -655,10 +656,10 @@ INSERT INTO venta values('2014-09-01',2500,'65',9,12,130);
 INSERT INTO venta values('2000-11-25',400,'2',7,15,66);
 INSERT INTO venta values('2015-10-01',345,'6',2,14,56);
 INSERT INTO venta values('2011-01-27',5677,'15',3,18,75);
-INSERT INTO venta values('2004-06-31',918,'12',6,1,68);
+INSERT INTO venta values('2004-06-30',918,'12',6,1,68);
 INSERT INTO venta values('2001-12-12',5432,'65',1,2,123);
 INSERT INTO venta values('2021-03-08',555,'9',2,20,25);
-INSERT INTO venta values('2021-02-12'666,'5',1,11,112);
+INSERT INTO venta values('2021-02-12',666,'5',1,11,112);
 INSERT INTO venta values('2021-01-30',777,'4',2,12,89);
 INSERT INTO venta values('2020-06-15',888,'12',3,4,67);
 INSERT INTO venta values('2019-04-12',999,'01',4,18,90);
@@ -745,10 +746,11 @@ cross join proveedor as pr
  full join venta as v on pr.idProducto=v.idProducto
  full join cliente as c on v.idCliente=c.idCliente 
 
- select p.nombre as Producto,pr.nombre as Proveedor, p.precio, c.nombre as cliente, v.fecha as "fecha de venta" from producto as p
+select p.nombre as Producto,pr.nombre as Proveedor, p.precio, c.nombre as cliente, v.fecha as "fecha de venta" from producto as p
  cross join proveedor as pr 
  cross join venta as v 
  cross join cliente as c 
+
  
  ---------------------------------------------------------------------------
 --Todas las tablas juntas
