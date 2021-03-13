@@ -726,30 +726,35 @@ cross join proveedor as pr
 --JOINS MULTIPLES
 ---------------------------------------------------------------------------
  --PROVEEDOR <-> PRODUCTO <-> VENTA <-> CLIENTE
- select p.nombre as Producto,pr.nombre as Proveedor, p.precio, c.nombre as cliente, v.fecha as "fecha de venta" from producto as p
+ select p.nombre as Producto,pr.nombre as Proveedor, p.precio, c.nombre as cliente,ve.Nombre as vendedor, v.fecha as "fecha de venta" from producto as p
  inner join proveedor as pr on pr.idProveedor=p.idProducto
  inner join venta as v on pr.idProducto=v.idProducto
  inner join cliente as c on v.idCliente=c.idCliente 
+ inner join vendedor as ve on ve.idVendedor=v.idVendedor 
  
- select p.nombre as Producto,pr.nombre as Proveedor, p.precio, c.nombre as cliente, v.fecha as "fecha de venta" from producto as p
+ select p.nombre as Producto,pr.nombre as Proveedor, p.precio, c.nombre as cliente,ve.Nombre as vendedor, v.fecha as "fecha de venta" from producto as p
  left join proveedor as pr on pr.idProveedor=p.idProducto
  left join venta as v on pr.idProducto=v.idProducto
- left join cliente as c on v.idCliente=c.idCliente 
+ left join cliente as c on v.idCliente=c.idCliente
+ left join vendedor as ve on ve.idVendedor=v.idVendedor 
  
- select p.nombre as Producto,pr.nombre as Proveedor, p.precio, c.nombre as cliente, v.fecha as "fecha de venta" from producto as p
+ select p.nombre as Producto,pr.nombre as Proveedor, p.precio, c.nombre as cliente,ve.Nombre as vendedor, v.fecha as "fecha de venta" from producto as p
  right join proveedor as pr on pr.idProveedor=p.idProducto
  right join venta as v on pr.idProducto=v.idProducto
- right join cliente as c on v.idCliente=c.idCliente 
+ right join cliente as c on v.idCliente=c.idCliente
+ right join vendedor as ve on ve.idVendedor=v.idVendedor 
  
- select p.nombre as Producto,pr.nombre as Proveedor, p.precio, c.nombre as cliente, v.fecha as "fecha de venta" from producto as p
+ select p.nombre as Producto,pr.nombre as Proveedor, p.precio, c.nombre as cliente,ve.Nombre as vendedor, v.fecha as "fecha de venta" from producto as p
  full join proveedor as pr on pr.idProveedor=p.idProducto
  full join venta as v on pr.idProducto=v.idProducto
- full join cliente as c on v.idCliente=c.idCliente 
+ full join cliente as c on v.idCliente=c.idCliente
+ full join vendedor as ve on ve.idVendedor=v.idVendedor 
 
-select p.nombre as Producto,pr.nombre as Proveedor, p.precio, c.nombre as cliente, v.fecha as "fecha de venta" from producto as p
+select p.nombre as Producto,pr.nombre as Proveedor, p.precio, c.nombre as cliente,ve.Nombre as vendedor, v.fecha as "fecha de venta" from producto as p
  cross join proveedor as pr 
  cross join venta as v 
- cross join cliente as c 
+ cross join cliente as c
+ cross join vendedor as ve
 
  
  ---------------------------------------------------------------------------
