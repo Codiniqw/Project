@@ -38,3 +38,5 @@ LIBRO: {'col': 4, 'isbn': '2516545', 'titulo': 'Mi Lucha', 'autor': 'Adolph Hitl
 --> Log History info (2021-03-01 17:49:59.813576 Aplicacion iniciada) usaurio: Codiniqw
 
 --> Log History info (2021-03-01 17:50:59.212046 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Log History info (2021-03-19 12:21:31.878477 Aplicacion iniciada) usaurio: alfar
