@@ -40,3 +40,31 @@ LIBRO: {'col': 4, 'isbn': '2516545', 'titulo': 'Mi Lucha', 'autor': 'Adolph Hitl
 --> Log History info (2021-03-01 17:50:59.212046 Aplicacion iniciada) usaurio: Codiniqw
 
 --> Log History info (2021-03-19 12:21:31.878477 Aplicacion iniciada) usaurio: alfar
+
+--> Log History info (2021-03-20 18:52:56.072469 Aplicacion iniciada) usaurio: alfar
+
+--> Log History info (2021-03-20 18:56:47.716037 Aplicacion iniciada) usaurio: alfar
+
+--> Log History info (2021-03-20 18:58:47.093366 Aplicacion iniciada) usaurio: alfar
+
+--> Log History info (2021-03-20 19:00:54.004941 Aplicacion iniciada) usaurio: alfar
+
+--> Log History info (2021-03-20 19:01:05.367940 Aplicacion iniciada) usaurio: alfar
+
+--> Log History info (2021-03-20 19:01:21.468971 Aplicacion iniciada) usaurio: alfar
+
+--> Log History info (2021-03-20 19:02:43.341388 Aplicacion iniciada) usaurio: alfar
+
+--> Log History info (2021-03-20 19:04:44.579538 Aplicacion iniciada) usaurio: alfar
+
+--> Libro Eliminado (2021-03-20 19:05:23.818037)
+LIBRO: {'_id': ObjectId('60569a68ebb654333f23d1d8'), 'col': 2, 'isbn': '4155424', 'titulo': 'Mi Lucha', 'autor': 'Adolf Hitler', 'genero': 'Terror', 'cantidad': '65'}
+
+
+--> Log History info (2021-03-20 19:05:50.139968 Aplicacion iniciada) usaurio: alfar
+
+--> Nuevo libro agregado (2021-03-20 19:06:20.850517)
+LIBRO: {'col': 2, 'isbn': '53465465', 'titulo': 'Java', 'autor': 'Joyanes aguilar', 'genero': 'ciencia ficcion', 'cantidad': '52', '_id': ObjectId('60569c0be90c5c26114de177')}
+
+
+--> Log History info (2021-03-20 19:18:24.867908 Aplicacion iniciada) usaurio: alfar

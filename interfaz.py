@@ -1,6 +1,5 @@
 from tkinter import *
 import PySimpleGUI as sg 
-from MongoConect import Conector
 import pymongo
 from Tabladatos import *
 from datetime import datetime
@@ -27,15 +26,12 @@ class Interfaz:
         sg.theme('DarkBlue6')
         deshacer='iconos/deshacer.png'
         rehacer='iconos/rehacer.png'
-        myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+        myclient = pymongo.MongoClient("mongodb+srv://codiniqw:Codiniqw@codiniqw.3gcnu.mongodb.net/")
         mydb = myclient["biblioteca"]
         mycol = mydb["libros"]
-
-        
         f = open("log.txt", "a")
         f.write("\n--> Log History info ("+str(datetime.now())+" Aplicacion iniciada) usaurio: "+getuser()+"\n")
         f.close()
-
         # ------ Make the Table Data ------
         data = make_table(num_rows=mycol.count())
         headi = [str(data[0][x])+'          ' for x in range(len(data[0]))]
@@ -127,7 +123,8 @@ class Interfaz:
 
             elif event == 'Update':
                 try:
-                    myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+                    myclient = pymongo.MongoClient(
+                        "mongodb+srv://codiniqw:Codiniqw@codiniqw.3gcnu.mongodb.net/")
                     mydb = myclient["biblioteca"]
                     mycol = mydb["libros"]
 
@@ -176,7 +173,7 @@ class Interfaz:
 
             elif event == 'Delete':
                 try:
-                    myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+                    myclient = pymongo.MongoClient("mongodb+srv://codiniqw:Codiniqw@codiniqw.3gcnu.mongodb.net/")
                     mydb = myclient["biblioteca"]
                     mycol = mydb["libros"]
 
@@ -218,7 +215,8 @@ class Interfaz:
             elif event == 'TABLE':
                 selected_row = window.Element('TABLE').SelectedRows[0]
                 print(selected_row)
-                myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+                myclient = pymongo.MongoClient(
+                    "mongodb+srv://codiniqw:Codiniqw@codiniqw.3gcnu.mongodb.net/")
                 mydb = myclient["biblioteca"]
                 mycol = mydb["libros"]
                 for resultado in mycol.find({'col': (selected_row+1)}):

@@ -1,7 +1,6 @@
 import PySimpleGUI as sg
 import random
 import string
-from MongoConect import Conector
 import pymongo
 from fpdf import FPDF
 
@@ -9,7 +8,7 @@ from fpdf import FPDF
 
 # ------ Some functions to help generate data for the table ------ 
 def make_table(num_rows):
-    myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+    myclient = pymongo.MongoClient("mongodb+srv://codiniqw:Codiniqw@codiniqw.3gcnu.mongodb.net/")
     mydb = myclient["biblioteca"]
     mycol = mydb["libros"]
     data = [[j for j in range(5)] for i in range(num_rows+1)] #Define el tamaño de la tabla 5 columas, n filas +1 porque en el [se gurda el encabezado]
@@ -26,16 +25,13 @@ def make_table(num_rows):
             }
             data[i] = [query.get('isbn'),query.get('titulo'),query.get('autor'),query.get('genero'),query.get('cantidad')] #array que almacena rellena las columnas
     return data
-myclient = pymongo.MongoClient("mongodb://localhost:27017/")
-mydb = myclient["biblioteca"]
-mycol = mydb["libros"]
 
 
 def corregircol():
-    myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+    myclient = pymongo.MongoClient("mongodb+srv://codiniqw:Codiniqw@codiniqw.3gcnu.mongodb.net/")
     mydb = myclient["biblioteca"]
     mycol = mydb["libros"]
-    aux=mycol.count()
+    aux= mycol.count()
     myquery = { "col": { "$gte": 0 } }
     newvalues =  { "$set": {"col":2} }
     x = mycol.update_many(myquery, newvalues)
@@ -69,3 +65,5 @@ def pdf(data):
             pdf.cell(col_width, 2*th, str(datum), border=1)
         pdf.ln(2*th)
     pdf.output('reporte.pdf','F')
+
+
