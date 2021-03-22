@@ -25,6 +25,8 @@ class Interfaz:
         return libro
 
     def interfaz():
+        undo=[]
+        redo=[]
         sg.theme('DarkBlue6')
         deshacer='iconos/deshacer.png'
         rehacer='iconos/rehacer.png'
@@ -40,7 +42,7 @@ class Interfaz:
 
         layout= [
             [sg.RButton('',image_filename=deshacer, image_size=(32, 32),key="DESHACER"),
-             sg.RButton('', image_filename=rehacer, image_size=(32, 32),key="HACER")],
+             sg.RButton('', image_filename=rehacer, image_size=(32, 32),key="REHACER")],
             [sg.Text('_'*70)],
             [sg.Table(
                 headings = headi,
@@ -104,6 +106,8 @@ class Interfaz:
                     mydb = myclient["biblioteca"]
                     mycol = mydb["libros"]
                     resultado = mycol.insert_one(libro)
+                    undo.append(libro)
+                    redo.clear()
                     # IMPRIMIMOS EL JSON EN CONSOLA
                     print(libro)
                     #LIMPIAMOS LOS CAMPOS
@@ -209,12 +213,21 @@ class Interfaz:
                 pdf(data=data)
                 MessageBox.showinfo("Información",
                             "Se ha creado el pdf")
-            elif event == 'HACER':
-                MessageBox.showinfo("Información",
-                            "Aquí se llamará el método hacer")
+            elif event == 'REHACER':
+                if(redo.count!=0):
+                    aux= redo.pop()
+                    undo.append(aux)
+                    mycol.insert_one(aux);
+                    data = make_table(num_rows=mycol.count())
+                    window.FindElement('TABLE').update(values=data[1:][:])
             elif event == 'DESHACER':
-                MessageBox.showinfo("Información",
-                            "Aquí se llamará el método deshacer")
+                aux=undo.pop()
+                redo.append(aux)
+                for libro in mycol.find({'col':aux['col']}):
+                    print(libro)
+                mycol.delete_one(libro);
+                data = make_table(num_rows=mycol.count())
+                window.FindElement('TABLE').update(values=data[1:][:])
             elif event == 'TABLE':
                 selected_row = window.Element('TABLE').SelectedRows[0]
                 print(selected_row)

@@ -76,3 +76,37 @@ LIBRO: {'col': 2, 'isbn': '53465465', 'titulo': 'Java', 'autor': 'Joyanes aguila
 --> Nuevo libro agregado (2021-03-21 17:06:36.361188)
 LIBRO: {'col': 3, 'isbn': '32423', 'titulo': 'java 2020', 'autor': 'joyanes', 'genero': 'programacion', 'cantidad': '10', '_id': ObjectId('6057d1741a05c5215c866fd9')}
 
+
+--> Log History info (2021-03-21 18:57:15.094582 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Nuevo libro agregado (2021-03-21 18:58:08.948978)
+LIBRO: {'col': 6, 'isbn': '4234234', 'titulo': 'undo/redo', 'autor': 'redos', 'genero': 'aprendizaje', 'cantidad': '2', '_id': ObjectId('6057eb9ed4b18656f880829b')}
+
+
+--> Log History info (2021-03-21 18:58:46.747517 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Log History info (2021-03-21 18:59:24.038084 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Nuevo libro agregado (2021-03-21 19:00:03.360884)
+LIBRO: {'col': 5, 'isbn': '12353', 'titulo': 'undo/redo', 'autor': 'yo', 'genero': 'aprendizaje', 'cantidad': '10', '_id': ObjectId('6057ec10129ead16fab1a8de')}
+
+
+--> Log History info (2021-03-21 19:03:13.952929 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Nuevo libro agregado (2021-03-21 19:04:09.673558)
+LIBRO: {'col': 6, 'isbn': '123', 'titulo': 'prueba', 'autor': 'yo', 'genero': 'ningun', 'cantidad': '10', '_id': ObjectId('6057ed078027dcca65e0348e')}
+
+
+--> Log History info (2021-03-21 19:05:09.584573 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro Eliminado (2021-03-21 19:05:29.113423)
+LIBRO: {'_id': ObjectId('6057ed078027dcca65e0348e'), 'col': 6, 'isbn': '123', 'titulo': 'prueba', 'autor': 'yo', 'genero': 'ningun', 'cantidad': '10'}
+
+
+--> Libro Eliminado (2021-03-21 19:05:38.325295)
+LIBRO: {'_id': ObjectId('6057ec10129ead16fab1a8de'), 'col': 5, 'isbn': '12353', 'titulo': 'undo/redo', 'autor': 'yo', 'genero': 'aprendizaje', 'cantidad': '10'}
+
+
+--> Nuevo libro agregado (2021-03-21 19:06:01.147376)
+LIBRO: {'col': 5, 'isbn': '234', 'titulo': 'pruebas', 'autor': 'yo', 'genero': 'gsdfg', 'cantidad': '10', '_id': ObjectId('6057ed7765fceb7ee669cbff')}
+
