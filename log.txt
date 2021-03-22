@@ -68,3 +68,11 @@ LIBRO: {'col': 2, 'isbn': '53465465', 'titulo': 'Java', 'autor': 'Joyanes aguila
 
 
 --> Log History info (2021-03-20 19:18:24.867908 Aplicacion iniciada) usaurio: alfar
+
+--> Log History info (2021-03-21 17:03:27.332776 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Log History info (2021-03-21 17:06:03.964209 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Nuevo libro agregado (2021-03-21 17:06:36.361188)
+LIBRO: {'col': 3, 'isbn': '32423', 'titulo': 'java 2020', 'autor': 'joyanes', 'genero': 'programacion', 'cantidad': '10', '_id': ObjectId('6057d1741a05c5215c866fd9')}
+

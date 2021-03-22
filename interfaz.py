@@ -8,19 +8,21 @@ from getpass import getuser
 
 class Interfaz:
     
-    def addLibro(Col,ISBN, Titulo, Autor, Genero, Cantidad):
+    def addLibro(ISBN, Titulo, Autor, Genero, Cantidad):
+        myclient = pymongo.MongoClient("mongodb+srv://codiniqw:Codiniqw@codiniqw.3gcnu.mongodb.net/")
+        mydb = myclient["biblioteca"]
+        mycol = mydb["libros"]
         libro = {
-            'col': Col,
+            'col': mycol.count()+1,
             'isbn': ISBN,
             'titulo': Titulo,
             'autor': Autor,
             'genero': Genero,
             'cantidad': Cantidad
         }
-        conexion = Conector()
-        connect = conexion.conector()
-        resultado = connect.libros.insert_one(libro)
+        resultado = mycol.insert_one(libro)
         print("Libro insertado: ", resultado)
+        return libro
 
     def interfaz():
         sg.theme('DarkBlue6')
@@ -98,9 +100,10 @@ class Interfaz:
                         'cantidad': Cantidad
                     }
                     #NOS CONECTAMOS A LA BASE DE DATOS Y AGREGAMOS EL JSON SI NO TIENE VALORES NULOS
-                    conexion = Conector()
-                    connect = conexion.conector()
-                    resultado = connect.libros.insert_one(libro)
+                    myclient = pymongo.MongoClient("mongodb+srv://codiniqw:Codiniqw@codiniqw.3gcnu.mongodb.net/")
+                    mydb = myclient["biblioteca"]
+                    mycol = mydb["libros"]
+                    resultado = mycol.insert_one(libro)
                     # IMPRIMIMOS EL JSON EN CONSOLA
                     print(libro)
                     #LIMPIAMOS LOS CAMPOS
