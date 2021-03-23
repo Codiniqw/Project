@@ -106,8 +106,9 @@ class Interfaz:
                     mydb = myclient["biblioteca"]
                     mycol = mydb["libros"]
                     resultado = mycol.insert_one(libro)
+                    libro['key']='add'
                     undo.append(libro)
-                    redo.clear()
+                    redo=[]
                     # IMPRIMIMOS EL JSON EN CONSOLA
                     print(libro)
                     #LIMPIAMOS LOS CAMPOS
@@ -156,6 +157,10 @@ class Interfaz:
                         }
                     }
                     x = mycol.update_one(libro, libroUpdated)
+                    libro['key']='update'
+                    undo.append(libro)
+                    print(libro)
+                    redo=[]
 
                     #LIMPIAMOS LOS CAMPOS
                     window.FindElement('-ISBN-').update('')
@@ -189,7 +194,24 @@ class Interfaz:
                         print(libro)
                     mycol.delete_one(libro)
                     corregircol()
-                                        
+                    ISBN=window['-ISBN-'].Get()
+                    Titulo = window['-TITULO-'].Get()
+                    Autor = window['-AUTOR-'].Get()
+                    Genero = window['-GENERO-'].Get()
+                    Cantidad=window['-CANTIDAD-'].Get()
+                    Col= mycol.count()+1
+                    #GUARDAMOS LA INFORMACION EN UN JSON
+                    libro = {
+                        'col': Col,
+                        'isbn': ISBN,
+                        'titulo': Titulo,
+                        'autor': Autor,
+                        'genero': Genero,
+                        'cantidad': Cantidad
+                    }
+                    libro['key']='del'
+                    undo.append(libro)
+                    redo=[]             
                     #LIMPIAMOS LOS CAMPOS
                     window.FindElement('-ISBN-').update('')
                     window.FindElement('-TITULO-').update('')
@@ -213,21 +235,102 @@ class Interfaz:
                 pdf(data=data)
                 MessageBox.showinfo("Información",
                             "Se ha creado el pdf")
+
             elif event == 'REHACER':
-                if(redo.count!=0):
-                    aux= redo.pop()
-                    undo.append(aux)
-                    mycol.insert_one(aux);
-                    data = make_table(num_rows=mycol.count())
-                    window.FindElement('TABLE').update(values=data[1:][:])
+                if redo.count!=0:
+                    try:
+                        aux= redo.pop()
+                        if aux['key']=='add': 
+                            aux.pop('key')
+                            print(redo)
+                            for libro in mycol.find({'isbn':aux['isbn']}):
+                                print(libro)
+                            mycol.delete_one(libro);
+                            aux['key']='del'
+                            undo.append(aux) 
+                            data = make_table(num_rows=mycol.count())
+                            window.FindElement('TABLE').update(values=data[1:][:])
+
+                        elif aux['key']=='del':
+                            aux.pop('key')
+                            print(redo)
+                            mycol.insert_one(aux)
+                            aux['key']='add'
+                            undo.append(aux)
+                            data = make_table(num_rows=mycol.count())
+                            window.FindElement('TABLE').update(values=data[1:][:])
+
+                        elif aux['key']=='update':
+                            for libro in mycol.find({'col':aux['col']}):
+                                print()
+                            libroUpdated = {"$set":
+                                {
+                                'col': aux['col'],
+                                'isbn': aux['isbn'],
+                                'titulo': aux['titulo'],
+                                'autor': aux['autor'],
+                                'genero': aux['titulo'],
+                                'cantidad': aux['cantidad']
+                                }
+                            }
+                            mycol.update_one(libro,libroUpdated)
+                            libro['key']='update'
+                            undo.append(libro)
+                            print(undo)
+                            data = make_table(num_rows=mycol.count())
+                            window.FindElement('TABLE').update(values=data[1:][:])
+
+                    except:
+                        print()
+
             elif event == 'DESHACER':
-                aux=undo.pop()
-                redo.append(aux)
-                for libro in mycol.find({'col':aux['col']}):
-                    print(libro)
-                mycol.delete_one(libro);
-                data = make_table(num_rows=mycol.count())
-                window.FindElement('TABLE').update(values=data[1:][:])
+                try:
+                    aux=undo.pop()
+                    if aux['key']=='add':
+                        aux.pop('key')
+                        print(aux)
+                        print(redo)
+                        for libro in mycol.find({'isbn':aux['isbn']}):
+                            print(libro)
+                        mycol.delete_one(libro);
+                        aux['key']='del'
+
+                        data = make_table(num_rows=mycol.count())
+                        window.FindElement('TABLE').update(values=data[1:][:])
+
+                    elif aux['key']=='del':
+                        aux.pop('key')
+                        mycol.insert_one(aux)
+                        aux['key']='add'
+                        redo.append(aux)
+
+                        data = make_table(num_rows=mycol.count())
+                        window.FindElement('TABLE').update(values=data[1:][:])
+
+                    elif aux['key']=='update':
+                        for libro in mycol.find({'col': aux['col']}):
+                            print(libro)
+                        libroUpdated = {"$set":
+                            {
+                            'col': aux['col'],
+                            'isbn': aux['isbn'],
+                            'titulo': aux['titulo'],
+                            'autor': aux['autor'],
+                            'genero': aux['titulo'],
+                            'cantidad': aux['cantidad']
+                            }
+                        }
+                        mycol.update_one(libro,libroUpdated)
+                        libro['key']='update'
+                        redo.append(libro)
+                        print(redo)
+
+                        data = make_table(num_rows=mycol.count())
+                        window.FindElement('TABLE').update(values=data[1:][:])
+
+                except:
+                    print()
+
             elif event == 'TABLE':
                 selected_row = window.Element('TABLE').SelectedRows[0]
                 print(selected_row)
@@ -242,6 +345,7 @@ class Interfaz:
                 window.FindElement('-AUTOR-').update(resultado.get('autor'))
                 window.FindElement('-GENERO-').update(resultado.get('genero'))
                 window.FindElement('-CANTIDAD-').update(resultado.get('cantidad'))
+
             elif event == 'limpiar':
                 #LIMPIAMOS LOS CAMPOS
                 window.FindElement('-ISBN-').update('')

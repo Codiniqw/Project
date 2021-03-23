@@ -111,10 +111,199 @@ LIBRO: {'_id': ObjectId('6057ec10129ead16fab1a8de'), 'col': 5, 'isbn': '12353', 
 LIBRO: {'col': 5, 'isbn': '234', 'titulo': 'pruebas', 'autor': 'yo', 'genero': 'gsdfg', 'cantidad': '10', '_id': ObjectId('6057ed7765fceb7ee669cbff')}
 
 
+<<<<<<< HEAD
 --> Log History info (2021-03-23 07:35:21.710868 Aplicacion iniciada) usaurio: alfar
 
 --> Log History info (2021-03-23 08:14:06.303186 Aplicacion iniciada) usaurio: alfar
 
 --> Libro Eliminado (2021-03-23 08:14:22.297450)
 LIBRO: {'_id': ObjectId('60569c0be90c5c26114de177'), 'col': 2, 'isbn': '53465465', 'titulo': 'Java', 'autor': 'Joyanes aguilar', 'genero': 'ciencia ficcion', 'cantidad': '52'}
+=======
+--> Log History info (2021-03-22 17:28:25.818648 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Log History info (2021-03-22 17:32:52.219072 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro Eliminado (2021-03-22 17:33:10.609239)
+LIBRO: {'col': 7, 'isbn': '1234', 'titulo': 'Hola mundo', 'autor': 'joyanes', 'genero': 'terror', 'cantidad': '10', 'key': 'delete'}
+
+
+--> Log History info (2021-03-22 17:34:58.463149 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro Eliminado (2021-03-22 17:35:14.362962)
+LIBRO: {'col': 7, 'isbn': '1234', 'titulo': 'Hola mundo', 'autor': 'joyanes', 'genero': 'terror', 'cantidad': '10', 'key': 'delete'}
+
+
+--> Log History info (2021-03-22 17:37:29.711286 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro Eliminado (2021-03-22 17:37:43.430450)
+LIBRO: {'col': 7, 'isbn': '1234', 'titulo': 'Hola mundo', 'autor': 'joyanes', 'genero': 'terror', 'cantidad': '10', 'key': 'delete'}
+
+
+--> Log History info (2021-03-22 17:38:23.778672 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro Eliminado (2021-03-22 17:39:09.695411)
+LIBRO: {'col': 7, 'isbn': '1234', 'titulo': 'Hola mundo', 'autor': 'joyanes', 'genero': 'terror', 'cantidad': '10', 'key': 'delete'}
+
+
+--> Log History info (2021-03-22 17:40:13.483127 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro Eliminado (2021-03-22 17:40:24.603637)
+LIBRO: {'col': 7, 'isbn': '1234', 'titulo': 'Hola mundo', 'autor': 'joyanes', 'genero': 'terror', 'cantidad': '10', 'key': 'delete'}
+
+
+--> Log History info (2021-03-22 17:41:57.300884 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro Eliminado (2021-03-22 17:42:53.335429)
+LIBRO: {'col': 7, 'isbn': '1234', 'titulo': 'Hola mundo', 'autor': 'joyanes', 'genero': 'terror', 'cantidad': '10', 'key': 'delete'}
+
+
+--> Libro Eliminado (2021-03-22 17:43:21.491063)
+LIBRO: {'col': 7, 'isbn': '1234', 'titulo': 'Hola mundo', 'autor': 'joyanes', 'genero': 'terror', 'cantidad': '10', 'key': 'delete'}
+
+
+--> Libro Eliminado (2021-03-22 17:44:18.663312)
+LIBRO: {'col': 7, 'isbn': '1234', 'titulo': 'Hola mundo', 'autor': 'joyanes', 'genero': 'terror', 'cantidad': '10', 'key': 'delete'}
+
+
+--> Log History info (2021-03-22 17:44:26.377554 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro Eliminado (2021-03-22 17:44:38.100586)
+LIBRO: {'col': 6, 'isbn': '1234', 'titulo': 'Hola mundo', 'autor': 'joyanes', 'genero': 'terror', 'cantidad': '10', 'key': 'delete'}
+
+
+--> Log History info (2021-03-22 17:46:00.183491 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Nuevo libro agregado (2021-03-22 17:47:41.635022)
+LIBRO: {'col': 7, 'isbn': '4322', 'titulo': 'pruebaas3', 'autor': 'yo', 'genero': 'yo', 'cantidad': '10', '_id': ObjectId('60592c993f11edf61cbded56'), 'key': 'add'}
+
+
+--> Log History info (2021-03-22 17:49:09.098998 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Nuevo libro agregado (2021-03-22 17:49:40.417284)
+LIBRO: {'col': 7, 'isbn': '23412', 'titulo': 'pruebas3', 'autor': 'agas', 'genero': 'ggfdf', 'cantidad': '5', '_id': ObjectId('60592d1285a4d260caea725e'), 'key': 'add'}
+
+
+--> Log History info (2021-03-22 17:54:39.407441 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro Eliminado (2021-03-22 17:54:55.638187)
+LIBRO: {'col': 6, 'isbn': '1234', 'titulo': 'Hola mundo', 'autor': 'joyanes', 'genero': 'terror', 'cantidad': '10', 'key': 'del'}
+
+
+--> Log History info (2021-03-22 17:58:43.299592 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro Eliminado (2021-03-22 17:59:11.041673)
+LIBRO: {'col': 6, 'isbn': '1234', 'titulo': 'Hola mundo', 'autor': 'joyanes', 'genero': 'terror', 'cantidad': '10', 'key': 'del'}
+
+
+--> Log History info (2021-03-22 18:00:32.659904 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro Eliminado (2021-03-22 18:00:46.591430)
+LIBRO: {'col': 6, 'isbn': '1234', 'titulo': 'Hola mundo', 'autor': 'joyanes', 'genero': 'terror', 'cantidad': '10', 'key': 'del'}
+
+
+--> Log History info (2021-03-22 18:01:39.829349 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro Eliminado (2021-03-22 18:01:52.095292)
+LIBRO: {'col': 6, 'isbn': '1234', 'titulo': 'Hola mundo', 'autor': 'joyanes', 'genero': 'terror', 'cantidad': '10', 'key': 'del'}
+
+
+--> Log History info (2021-03-22 18:03:38.338318 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro Eliminado (2021-03-22 18:03:50.553075)
+LIBRO: {'col': 6, 'isbn': '1234', 'titulo': 'Hola mundo', 'autor': 'joyanes', 'genero': 'terror', 'cantidad': '10', 'key': 'del'}
+
+
+--> Libro Eliminado (2021-03-22 18:04:00.087715)
+LIBRO: {'col': 5, 'isbn': '234', 'titulo': 'pruebas', 'autor': 'yo', 'genero': 'gsdfg', 'cantidad': '10', 'key': 'del'}
+
+
+--> Libro Eliminado (2021-03-22 18:04:09.921075)
+LIBRO: {'col': 4, 'isbn': '1234', 'titulo': 'Hola mundo', 'autor': 'joyanes', 'genero': 'terror', 'cantidad': '10', 'key': 'del'}
+
+
+--> Log History info (2021-03-22 18:08:49.228270 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro Eliminado (2021-03-22 18:09:01.600269)
+LIBRO: {'col': 7, 'isbn': '1234', 'titulo': 'Hola mundo', 'autor': 'joyanes', 'genero': 'terror', 'cantidad': '10', 'key': 'del'}
+
+
+--> Log History info (2021-03-22 18:09:08.681824 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro Eliminado (2021-03-22 18:09:30.580533)
+LIBRO: {'col': 6, 'isbn': '1234', 'titulo': 'Hola mundo', 'autor': 'joyanes', 'genero': 'terror', 'cantidad': '10', 'key': 'del'}
+
+
+--> Log History info (2021-03-22 18:21:13.969611 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro Eliminado (2021-03-22 18:21:26.279853)
+LIBRO: {'col': 5, 'isbn': '234', 'titulo': 'pruebas', 'autor': 'yo', 'genero': 'gsdfg', 'cantidad': '10', 'key': 'del'}
+
+
+--> Libro Eliminado (2021-03-22 18:21:53.758858)
+LIBRO: {'col': 5, 'isbn': '234', 'titulo': 'pruebas', 'autor': 'yo', 'genero': 'gsdfg', 'cantidad': '10', 'key': 'del'}
+
+
+--> Log History info (2021-03-22 18:22:42.696397 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro Eliminado (2021-03-22 18:22:54.435217)
+LIBRO: {'col': 5, 'isbn': '234', 'titulo': 'pruebas', 'autor': 'yo', 'genero': 'gsdfg', 'cantidad': '10', 'key': 'del'}
+
+
+--> Log History info (2021-03-22 18:23:57.590883 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro Eliminado (2021-03-22 18:24:14.776490)
+LIBRO: {'col': 5, 'isbn': '234', 'titulo': 'pruebas', 'autor': 'yo', 'genero': 'gsdfg', 'cantidad': '10', 'key': 'del'}
+
+
+--> Log History info (2021-03-22 18:25:47.232003 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro Eliminado (2021-03-22 18:26:02.938253)
+LIBRO: {'col': 5, 'isbn': '234', 'titulo': 'pruebas', 'autor': 'yo', 'genero': 'gsdfg', 'cantidad': '10', 'key': 'del'}
+
+
+--> Libro Eliminado (2021-03-22 18:26:37.199431)
+LIBRO: {'col': 4, 'isbn': '1234', 'titulo': 'Hola mundo', 'autor': 'joyanes', 'genero': 'terror', 'cantidad': '10', 'key': 'del'}
+
+
+--> Log History info (2021-03-22 18:27:02.901129 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro Eliminado (2021-03-22 18:27:14.599593)
+LIBRO: {'col': 3, 'isbn': '32423', 'titulo': 'java 2020', 'autor': 'joyanes', 'genero': 'programacion', 'cantidad': '10', 'key': 'del'}
+
+
+--> Log History info (2021-03-22 18:29:54.345256 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro Eliminado (2021-03-22 18:30:10.530283)
+LIBRO: {'col': 3, 'isbn': '32423', 'titulo': 'java 2020', 'autor': 'joyanes', 'genero': 'programacion', 'cantidad': '10', 'key': 'del'}
+
+
+--> Log History info (2021-03-22 18:48:52.951893 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Log History info (2021-03-22 18:51:33.202976 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro actualizado (2021-03-22 18:51:52.371088)
+LIBRO ORIGINAL: {'_id': ObjectId('605936942af5cbe6d7468368'), 'col': 3, 'isbn': '32423', 'titulo': 'java 2020', 'autor': 'joyanes', 'genero': 'programacion', 'cantidad': '10', 'key': 'update'}
+LIBRO ACTUALIZADO: {'$set': {'col': 3, 'isbn': '32423', 'titulo': 'java 2020', 'autor': 'joyanes Agular', 'genero': 'programacion', 'cantidad': '10'}}
+
+
+--> Log History info (2021-03-22 18:53:09.170871 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro actualizado (2021-03-22 18:53:23.698724)
+LIBRO ORIGINAL: {'_id': ObjectId('605936942af5cbe6d7468368'), 'col': 3, 'isbn': '32423', 'titulo': 'java 2020', 'autor': 'joyanes Agular', 'genero': 'programacion', 'cantidad': '10', 'key': 'update'}
+LIBRO ACTUALIZADO: {'$set': {'col': 3, 'isbn': '32423', 'titulo': 'java 2021', 'autor': 'joyanes Agular', 'genero': 'programacion', 'cantidad': '10'}}
+
+
+--> Log History info (2021-03-22 18:54:08.864568 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro actualizado (2021-03-22 18:54:35.163931)
+LIBRO ORIGINAL: {'_id': ObjectId('605936942af5cbe6d7468368'), 'col': 3, 'isbn': '32423', 'titulo': 'java 2021', 'autor': 'joyanes Agular', 'genero': 'programacion', 'cantidad': '10', 'key': 'update'}
+LIBRO ACTUALIZADO: {'$set': {'col': 3, 'isbn': '32423', 'titulo': 'java 2020', 'autor': 'joyanes Agular', 'genero': 'programacion', 'cantidad': '10'}}
+
+
+--> Log History info (2021-03-22 18:57:14.444773 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro actualizado (2021-03-22 18:58:25.107051)
+LIBRO ORIGINAL: {'_id': ObjectId('605936942af5cbe6d7468368'), 'col': 3, 'isbn': '32423', 'titulo': 'java 2020', 'autor': 'joyanes Agular', 'genero': 'programacion', 'cantidad': '10', 'key': 'update'}
+LIBRO ACTUALIZADO: {'$set': {'col': 3, 'isbn': '32423', 'titulo': 'java 2021', 'autor': 'Joyanes Agular', 'genero': 'programacion', 'cantidad': '10'}}
+>>>>>>> 5698ab264aefa81e827379aef852f1eb3a84325e
 

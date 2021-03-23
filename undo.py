@@ -36,6 +36,7 @@ mycol.insert_one(y);
 undo.append(y);
 print(undo);
 print(redo);
+print (redo.clear())
 
 
 
