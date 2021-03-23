@@ -106,8 +106,9 @@ class Interfaz:
                     mydb = myclient["biblioteca"]
                     mycol = mydb["libros"]
                     resultado = mycol.insert_one(libro)
+                    libro['key']='add'
                     undo.append(libro)
-                    redo.clear()
+                    redo=[]
                     # IMPRIMIMOS EL JSON EN CONSOLA
                     print(libro)
                     #LIMPIAMOS LOS CAMPOS
@@ -189,7 +190,24 @@ class Interfaz:
                         print(libro)
                     mycol.delete_one(libro)
                     corregircol()
-                                        
+                    ISBN=window['-ISBN-'].Get()
+                    Titulo = window['-TITULO-'].Get()
+                    Autor = window['-AUTOR-'].Get()
+                    Genero = window['-GENERO-'].Get()
+                    Cantidad=window['-CANTIDAD-'].Get()
+                    Col= mycol.count()+1
+                    #GUARDAMOS LA INFORMACION EN UN JSON
+                    libro = {
+                        'col': Col,
+                        'isbn': ISBN,
+                        'titulo': Titulo,
+                        'autor': Autor,
+                        'genero': Genero,
+                        'cantidad': Cantidad
+                    }
+                    libro['key']='del'
+                    undo.append(libro)
+                    redo=[]             
                     #LIMPIAMOS LOS CAMPOS
                     window.FindElement('-ISBN-').update('')
                     window.FindElement('-TITULO-').update('')
@@ -214,20 +232,49 @@ class Interfaz:
                 MessageBox.showinfo("Información",
                             "Se ha creado el pdf")
             elif event == 'REHACER':
-                if(redo.count!=0):
-                    aux= redo.pop()
-                    undo.append(aux)
-                    mycol.insert_one(aux);
-                    data = make_table(num_rows=mycol.count())
-                    window.FindElement('TABLE').update(values=data[1:][:])
+                if redo.count!=0:
+                    try:
+                        aux= redo.pop()
+                        if aux['key']=='add':
+                            aux['key']='del'
+                            undo.append(aux)    
+                            print(redo)
+                            for libro in mycol.find({'isbn':aux['isbn']}):
+                                print(libro)
+                            mycol.delete_one(libro);
+                            data = make_table(num_rows=mycol.count())
+                            window.FindElement('TABLE').update(values=data[1:][:])
+                        elif aux['key']=='del':
+                            aux['key']='add'
+                            undo.append(aux)
+                            print(redo)
+                            mycol.insert_one(aux)
+                            data = make_table(num_rows=mycol.count())
+                            window.FindElement('TABLE').update(values=data[1:][:])
+                    except:
+                        print()
+
             elif event == 'DESHACER':
-                aux=undo.pop()
-                redo.append(aux)
-                for libro in mycol.find({'col':aux['col']}):
-                    print(libro)
-                mycol.delete_one(libro);
-                data = make_table(num_rows=mycol.count())
-                window.FindElement('TABLE').update(values=data[1:][:])
+                try:
+                    aux=undo.pop()
+                    if aux['key']=='add':
+                        aux['key']='del'
+                        redo.append(aux)    
+                        print(redo)
+                        for libro in mycol.find({'isbn':aux['isbn']}):
+                            print(libro)
+                        mycol.delete_one(libro);
+                        data = make_table(num_rows=mycol.count())
+                        window.FindElement('TABLE').update(values=data[1:][:])
+                    elif aux['key']=='del':
+                        aux['key']='add'
+                        redo.append(aux)
+                        print(redo)
+                        mycol.insert_one(aux)
+                        data = make_table(num_rows=mycol.count())
+                        window.FindElement('TABLE').update(values=data[1:][:])
+                except:
+                    print()    
             elif event == 'TABLE':
                 selected_row = window.Element('TABLE').SelectedRows[0]
                 print(selected_row)
