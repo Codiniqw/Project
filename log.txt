@@ -110,3 +110,11 @@ LIBRO: {'_id': ObjectId('6057ec10129ead16fab1a8de'), 'col': 5, 'isbn': '12353', 
 --> Nuevo libro agregado (2021-03-21 19:06:01.147376)
 LIBRO: {'col': 5, 'isbn': '234', 'titulo': 'pruebas', 'autor': 'yo', 'genero': 'gsdfg', 'cantidad': '10', '_id': ObjectId('6057ed7765fceb7ee669cbff')}
 
+
+--> Log History info (2021-03-23 07:35:21.710868 Aplicacion iniciada) usaurio: alfar
+
+--> Log History info (2021-03-23 08:14:06.303186 Aplicacion iniciada) usaurio: alfar
+
+--> Libro Eliminado (2021-03-23 08:14:22.297450)
+LIBRO: {'_id': ObjectId('60569c0be90c5c26114de177'), 'col': 2, 'isbn': '53465465', 'titulo': 'Java', 'autor': 'Joyanes aguilar', 'genero': 'ciencia ficcion', 'cantidad': '52'}
+
