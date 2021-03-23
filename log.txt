@@ -224,3 +224,47 @@ LIBRO: {'col': 7, 'isbn': '1234', 'titulo': 'Hola mundo', 'autor': 'joyanes', 'g
 --> Libro Eliminado (2021-03-22 18:09:30.580533)
 LIBRO: {'col': 6, 'isbn': '1234', 'titulo': 'Hola mundo', 'autor': 'joyanes', 'genero': 'terror', 'cantidad': '10', 'key': 'del'}
 
+
+--> Log History info (2021-03-22 18:21:13.969611 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro Eliminado (2021-03-22 18:21:26.279853)
+LIBRO: {'col': 5, 'isbn': '234', 'titulo': 'pruebas', 'autor': 'yo', 'genero': 'gsdfg', 'cantidad': '10', 'key': 'del'}
+
+
+--> Libro Eliminado (2021-03-22 18:21:53.758858)
+LIBRO: {'col': 5, 'isbn': '234', 'titulo': 'pruebas', 'autor': 'yo', 'genero': 'gsdfg', 'cantidad': '10', 'key': 'del'}
+
+
+--> Log History info (2021-03-22 18:22:42.696397 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro Eliminado (2021-03-22 18:22:54.435217)
+LIBRO: {'col': 5, 'isbn': '234', 'titulo': 'pruebas', 'autor': 'yo', 'genero': 'gsdfg', 'cantidad': '10', 'key': 'del'}
+
+
+--> Log History info (2021-03-22 18:23:57.590883 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro Eliminado (2021-03-22 18:24:14.776490)
+LIBRO: {'col': 5, 'isbn': '234', 'titulo': 'pruebas', 'autor': 'yo', 'genero': 'gsdfg', 'cantidad': '10', 'key': 'del'}
+
+
+--> Log History info (2021-03-22 18:25:47.232003 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro Eliminado (2021-03-22 18:26:02.938253)
+LIBRO: {'col': 5, 'isbn': '234', 'titulo': 'pruebas', 'autor': 'yo', 'genero': 'gsdfg', 'cantidad': '10', 'key': 'del'}
+
+
+--> Libro Eliminado (2021-03-22 18:26:37.199431)
+LIBRO: {'col': 4, 'isbn': '1234', 'titulo': 'Hola mundo', 'autor': 'joyanes', 'genero': 'terror', 'cantidad': '10', 'key': 'del'}
+
+
+--> Log History info (2021-03-22 18:27:02.901129 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro Eliminado (2021-03-22 18:27:14.599593)
+LIBRO: {'col': 3, 'isbn': '32423', 'titulo': 'java 2020', 'autor': 'joyanes', 'genero': 'programacion', 'cantidad': '10', 'key': 'del'}
+
+
+--> Log History info (2021-03-22 18:29:54.345256 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro Eliminado (2021-03-22 18:30:10.530283)
+LIBRO: {'col': 3, 'isbn': '32423', 'titulo': 'java 2020', 'autor': 'joyanes', 'genero': 'programacion', 'cantidad': '10', 'key': 'del'}
+

@@ -156,6 +156,9 @@ class Interfaz:
                         'cantidad': Cantidad
                         }
                     }
+                    libroUpdated['key']='update'
+                    undo.append(libroUpdated)
+                    redo=[]
                     x = mycol.update_one(libro, libroUpdated)
 
                     #LIMPIAMOS LOS CAMPOS
@@ -231,24 +234,27 @@ class Interfaz:
                 pdf(data=data)
                 MessageBox.showinfo("Información",
                             "Se ha creado el pdf")
+
             elif event == 'REHACER':
                 if redo.count!=0:
                     try:
                         aux= redo.pop()
-                        if aux['key']=='add':
-                            aux['key']='del'
-                            undo.append(aux)    
+                        if aux['key']=='add': 
+                            aux.pop('key')
                             print(redo)
                             for libro in mycol.find({'isbn':aux['isbn']}):
                                 print(libro)
                             mycol.delete_one(libro);
+                            aux['key']='del'
+                            undo.append(aux) 
                             data = make_table(num_rows=mycol.count())
                             window.FindElement('TABLE').update(values=data[1:][:])
                         elif aux['key']=='del':
-                            aux['key']='add'
-                            undo.append(aux)
+                            aux.pop('key')
                             print(redo)
                             mycol.insert_one(aux)
+                            aux['key']='add'
+                            undo.append(aux)
                             data = make_table(num_rows=mycol.count())
                             window.FindElement('TABLE').update(values=data[1:][:])
                     except:
@@ -258,23 +264,33 @@ class Interfaz:
                 try:
                     aux=undo.pop()
                     if aux['key']=='add':
-                        aux['key']='del'
-                        redo.append(aux)    
+                        aux.pop('key')
+                        print(aux)
                         print(redo)
                         for libro in mycol.find({'isbn':aux['isbn']}):
                             print(libro)
                         mycol.delete_one(libro);
+                        aux['key']='del'
+                        redo.append(aux)
                         data = make_table(num_rows=mycol.count())
                         window.FindElement('TABLE').update(values=data[1:][:])
                     elif aux['key']=='del':
+                        aux.pop('key')
+                        mycol.insert_one(aux)
                         aux['key']='add'
+                        redo.append(aux)
+                        print(redo)
+                        data = make_table(num_rows=mycol.count())
+                        window.FindElement('TABLE').update(values=data[1:][:])
+                    elif aux['key']=='update':
                         redo.append(aux)
                         print(redo)
                         mycol.insert_one(aux)
                         data = make_table(num_rows=mycol.count())
                         window.FindElement('TABLE').update(values=data[1:][:])
                 except:
-                    print()    
+                    print()
+
             elif event == 'TABLE':
                 selected_row = window.Element('TABLE').SelectedRows[0]
                 print(selected_row)
@@ -289,6 +305,7 @@ class Interfaz:
                 window.FindElement('-AUTOR-').update(resultado.get('autor'))
                 window.FindElement('-GENERO-').update(resultado.get('genero'))
                 window.FindElement('-CANTIDAD-').update(resultado.get('cantidad'))
+
             elif event == 'limpiar':
                 #LIMPIAMOS LOS CAMPOS
                 window.FindElement('-ISBN-').update('')
