@@ -268,3 +268,33 @@ LIBRO: {'col': 3, 'isbn': '32423', 'titulo': 'java 2020', 'autor': 'joyanes', 'g
 --> Libro Eliminado (2021-03-22 18:30:10.530283)
 LIBRO: {'col': 3, 'isbn': '32423', 'titulo': 'java 2020', 'autor': 'joyanes', 'genero': 'programacion', 'cantidad': '10', 'key': 'del'}
 
+
+--> Log History info (2021-03-22 18:48:52.951893 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Log History info (2021-03-22 18:51:33.202976 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro actualizado (2021-03-22 18:51:52.371088)
+LIBRO ORIGINAL: {'_id': ObjectId('605936942af5cbe6d7468368'), 'col': 3, 'isbn': '32423', 'titulo': 'java 2020', 'autor': 'joyanes', 'genero': 'programacion', 'cantidad': '10', 'key': 'update'}
+LIBRO ACTUALIZADO: {'$set': {'col': 3, 'isbn': '32423', 'titulo': 'java 2020', 'autor': 'joyanes Agular', 'genero': 'programacion', 'cantidad': '10'}}
+
+
+--> Log History info (2021-03-22 18:53:09.170871 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro actualizado (2021-03-22 18:53:23.698724)
+LIBRO ORIGINAL: {'_id': ObjectId('605936942af5cbe6d7468368'), 'col': 3, 'isbn': '32423', 'titulo': 'java 2020', 'autor': 'joyanes Agular', 'genero': 'programacion', 'cantidad': '10', 'key': 'update'}
+LIBRO ACTUALIZADO: {'$set': {'col': 3, 'isbn': '32423', 'titulo': 'java 2021', 'autor': 'joyanes Agular', 'genero': 'programacion', 'cantidad': '10'}}
+
+
+--> Log History info (2021-03-22 18:54:08.864568 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro actualizado (2021-03-22 18:54:35.163931)
+LIBRO ORIGINAL: {'_id': ObjectId('605936942af5cbe6d7468368'), 'col': 3, 'isbn': '32423', 'titulo': 'java 2021', 'autor': 'joyanes Agular', 'genero': 'programacion', 'cantidad': '10', 'key': 'update'}
+LIBRO ACTUALIZADO: {'$set': {'col': 3, 'isbn': '32423', 'titulo': 'java 2020', 'autor': 'joyanes Agular', 'genero': 'programacion', 'cantidad': '10'}}
+
+
+--> Log History info (2021-03-22 18:57:14.444773 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro actualizado (2021-03-22 18:58:25.107051)
+LIBRO ORIGINAL: {'_id': ObjectId('605936942af5cbe6d7468368'), 'col': 3, 'isbn': '32423', 'titulo': 'java 2020', 'autor': 'joyanes Agular', 'genero': 'programacion', 'cantidad': '10', 'key': 'update'}
+LIBRO ACTUALIZADO: {'$set': {'col': 3, 'isbn': '32423', 'titulo': 'java 2021', 'autor': 'Joyanes Agular', 'genero': 'programacion', 'cantidad': '10'}}
+

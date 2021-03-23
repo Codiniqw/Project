@@ -156,10 +156,11 @@ class Interfaz:
                         'cantidad': Cantidad
                         }
                     }
-                    libroUpdated['key']='update'
-                    undo.append(libroUpdated)
-                    redo=[]
                     x = mycol.update_one(libro, libroUpdated)
+                    libro['key']='update'
+                    undo.append(libro)
+                    print(libro)
+                    redo=[]
 
                     #LIMPIAMOS LOS CAMPOS
                     window.FindElement('-ISBN-').update('')
@@ -249,6 +250,7 @@ class Interfaz:
                             undo.append(aux) 
                             data = make_table(num_rows=mycol.count())
                             window.FindElement('TABLE').update(values=data[1:][:])
+
                         elif aux['key']=='del':
                             aux.pop('key')
                             print(redo)
@@ -257,6 +259,27 @@ class Interfaz:
                             undo.append(aux)
                             data = make_table(num_rows=mycol.count())
                             window.FindElement('TABLE').update(values=data[1:][:])
+
+                        elif aux['key']=='update':
+                            for libro in mycol.find({'col':aux['col']}):
+                                print()
+                            libroUpdated = {"$set":
+                                {
+                                'col': aux['col'],
+                                'isbn': aux['isbn'],
+                                'titulo': aux['titulo'],
+                                'autor': aux['autor'],
+                                'genero': aux['titulo'],
+                                'cantidad': aux['cantidad']
+                                }
+                            }
+                            mycol.update_one(libro,libroUpdated)
+                            libro['key']='update'
+                            undo.append(libro)
+                            print(undo)
+                            data = make_table(num_rows=mycol.count())
+                            window.FindElement('TABLE').update(values=data[1:][:])
+
                     except:
                         print()
 
@@ -271,23 +294,40 @@ class Interfaz:
                             print(libro)
                         mycol.delete_one(libro);
                         aux['key']='del'
-                        redo.append(aux)
+
                         data = make_table(num_rows=mycol.count())
                         window.FindElement('TABLE').update(values=data[1:][:])
+
                     elif aux['key']=='del':
                         aux.pop('key')
                         mycol.insert_one(aux)
                         aux['key']='add'
                         redo.append(aux)
-                        print(redo)
+
                         data = make_table(num_rows=mycol.count())
                         window.FindElement('TABLE').update(values=data[1:][:])
+
                     elif aux['key']=='update':
-                        redo.append(aux)
+                        for libro in mycol.find({'col': aux['col']}):
+                            print(libro)
+                        libroUpdated = {"$set":
+                            {
+                            'col': aux['col'],
+                            'isbn': aux['isbn'],
+                            'titulo': aux['titulo'],
+                            'autor': aux['autor'],
+                            'genero': aux['titulo'],
+                            'cantidad': aux['cantidad']
+                            }
+                        }
+                        mycol.update_one(libro,libroUpdated)
+                        libro['key']='update'
+                        redo.append(libro)
                         print(redo)
-                        mycol.insert_one(aux)
+
                         data = make_table(num_rows=mycol.count())
                         window.FindElement('TABLE').update(values=data[1:][:])
+
                 except:
                     print()
 
