@@ -567,3 +567,5 @@ LIBRO ACTUALIZADO: {'$set': {'col': 4, 'isbn': '324258', 'titulo': 'java 2030', 
 
 
 --> Log History info (2021-03-26 14:58:20.991853 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Log History info (2021-03-26 15:53:01.851798 Aplicacion iniciada) usaurio: Codiniqw
