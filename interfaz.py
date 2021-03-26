@@ -237,6 +237,7 @@ class Interfaz:
                 pdf(data=data)
                 MessageBox.showinfo("Información",
                             "Se ha creado el pdf")
+                pdf1()
 
 
             elif event == 'REHACER':

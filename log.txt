@@ -327,3 +327,7 @@ LIBRO: {'col': 3, 'isbn': '2342352', 'titulo': 'Hola en pyhton', 'autor': 'yo mr
 --> Nuevo libro agregado (2021-03-26 12:08:37.958383)
 LIBRO: {'col': 3, 'isbn': '4234', 'titulo': 'hola en python', 'autor': 'yo', 'genero': 'terror', 'cantidad': '10', '_id': ObjectId('605e23242095b6f2c571a435'), 'key': 'add'}
 
+
+--> Log History info (2021-03-26 12:17:36.939059 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Log History info (2021-03-26 12:18:24.468291 Aplicacion iniciada) usaurio: Codiniqw

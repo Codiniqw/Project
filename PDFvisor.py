@@ -1,7 +1,8 @@
 import PySimpleGUI as sg
 import time
 from tkPDFViewer import tkPDFViewer as pdf2
-from tkinter import*
+from tkinter import *
+import os
 
 def progres():
      layout = [[sg.Text('Imprimiendo')],
@@ -26,15 +27,10 @@ def progres():
      time.sleep(.5)
      window1.Close()
 def pdf1():
-    time.sleep(5)
-    while TRUE:
-        root = Tk()
-        root.geometry=("550x750")
-        variable1 = pdf2.ShowPdf()
-        variable2 = variable1.pdf_view(
-            root, pdf_location=r"reporte.pdf", width=80, height=100)
-        variable2.pack()
-        root.mainloop()
+    time.sleep(10)
+    path = 'reporte.pdf'
+    os.system(path)
+    
   
     
     
