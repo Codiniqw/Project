@@ -1,7 +1,8 @@
-from tkinter import *
-from tkdocviewer import *
 import PySimpleGUI as sg
 import time
+from tkPDFViewer import tkPDFViewer as pdf
+from tkinter import*
+import sys
 
 class Visor():
     def progres():
@@ -26,17 +27,23 @@ class Visor():
         time.sleep(.5)
         progress_bar.UpdateBar(6, 6)
         time.sleep(.5)
-        time.sleep(3)
         window.Close()
 
+class PDF():
+    def pdf():
         root = Tk()
-        v = DocViewer(root)
-        v.pack(side="top", expand=1, fill="both")
-        v.display_file("reporte.pdf")
+        root.geometry=("550x750")
+        variable1 = pdf.ShowPdf()
+        variable2 = variable1.pdf_view(
+            root, pdf_location=r"reporte.pdf", width=80, height=100)
+        variable2.pack()
         root.mainloop()
-
 
 if __name__ == "__main__":
     Visor.progres()
+    time.sleep(3)
+    
+    
+    
 
     

@@ -65,5 +65,6 @@ def pdf(data):
             pdf.cell(col_width, 2*th, str(datum), border=1)
         pdf.ln(2*th)
     pdf.output('reporte.pdf','F')
+    
 
 
