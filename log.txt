@@ -307,3 +307,23 @@ LIBRO ORIGINAL: {'_id': ObjectId('605936942af5cbe6d7468368'), 'col': 3, 'isbn': 
 LIBRO ACTUALIZADO: {'$set': {'col': 3, 'isbn': '32423', 'titulo': 'java 2021', 'autor': 'Joyanes Agular', 'genero': 'programacion', 'cantidad': '10'}}
 >>>>>>> 5698ab264aefa81e827379aef852f1eb3a84325e
 
+
+--> Log History info (2021-03-26 11:53:35.206007 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Log History info (2021-03-26 11:57:20.853882 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Log History info (2021-03-26 11:58:08.691715 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Log History info (2021-03-26 12:00:00.085165 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Log History info (2021-03-26 12:01:22.966246 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Nuevo libro agregado (2021-03-26 12:03:03.785565)
+LIBRO: {'col': 3, 'isbn': '2342352', 'titulo': 'Hola en pyhton', 'autor': 'yo mro', 'genero': 'terror', 'cantidad': '10', '_id': ObjectId('605e21d5e171168247296cd6'), 'key': 'add'}
+
+
+--> Log History info (2021-03-26 12:08:09.325944 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Nuevo libro agregado (2021-03-26 12:08:37.958383)
+LIBRO: {'col': 3, 'isbn': '4234', 'titulo': 'hola en python', 'autor': 'yo', 'genero': 'terror', 'cantidad': '10', '_id': ObjectId('605e23242095b6f2c571a435'), 'key': 'add'}
+

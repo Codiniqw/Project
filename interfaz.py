@@ -5,6 +5,7 @@ from Tabladatos import *
 from datetime import datetime
 from tkinter import messagebox as MessageBox
 from getpass import getuser
+from PDFvisor import *
 
 class Interfaz:
     
@@ -232,9 +233,11 @@ class Interfaz:
                     MessageBox.showwarning("Alerta", "Seleccione el libro a eliminar")
 
             elif event == 'Print All':
+                progres()
                 pdf(data=data)
                 MessageBox.showinfo("Información",
                             "Se ha creado el pdf")
+
 
             elif event == 'REHACER':
                 if redo.count!=0:
@@ -294,6 +297,7 @@ class Interfaz:
                             print(libro)
                         mycol.delete_one(libro);
                         aux['key']='del'
+                        redo.append(aux)
 
                         data = make_table(num_rows=mycol.count())
                         window.FindElement('TABLE').update(values=data[1:][:])
