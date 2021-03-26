@@ -5,7 +5,6 @@ from Tabladatos import *
 from datetime import datetime
 from tkinter import messagebox as MessageBox
 from getpass import getuser
-from PDFvisor import *
 
 class Interfaz:
     

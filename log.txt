@@ -331,3 +331,9 @@ LIBRO: {'col': 3, 'isbn': '4234', 'titulo': 'hola en python', 'autor': 'yo', 'ge
 --> Log History info (2021-03-26 12:17:36.939059 Aplicacion iniciada) usaurio: Codiniqw
 
 --> Log History info (2021-03-26 12:18:24.468291 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Log History info (2021-03-26 13:31:05.087496 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Log History info (2021-03-26 13:45:06.856074 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Log History info (2021-03-26 13:47:11.340529 Aplicacion iniciada) usaurio: Codiniqw
