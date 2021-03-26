@@ -546,3 +546,24 @@ LIBRO ACTUALIZADO: {'$set': {'col': 4, 'isbn': '324258', 'titulo': 'java 2030', 
 LIBRO ORIGINAL: {'_id': ObjectId('605e4165e67635e17187ee91'), 'col': 4, 'isbn': '324258', 'titulo': 'java 2020', 'autor': 'joyanes Aguilar', 'genero': 'java 2020', 'cantidad': '10', 'key': 'update'}
 LIBRO ACTUALIZADO: {'$set': {'col': 4, 'isbn': '324258', 'titulo': 'java 2030', 'autor': 'joyanes Aguilar', 'genero': 'java 2020', 'cantidad': '10'}}
 
+
+--> Log History info (2021-03-26 14:54:24.064402 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro actualizado (2021-03-26 14:54:59.803560)
+LIBRO ORIGINAL: {'_id': ObjectId('605e4165e67635e17187ee91'), 'col': 4, 'isbn': '324258', 'titulo': 'java 2030', 'autor': 'joyanes Aguilar', 'genero': 'java 2020', 'cantidad': '10', 'key': 'update'}
+LIBRO ACTUALIZADO: {'$set': {'col': 4, 'isbn': '324258', 'titulo': 'java 2030', 'autor': 'joyanes Aguilar', 'genero': 'Programacion', 'cantidad': '10'}}
+
+
+--> Libro actualizado (2021-03-26 14:55:30.616962)
+LIBRO ORIGINAL: {'_id': ObjectId('605e4165e67635e17187ee91'), 'col': 4, 'isbn': '324258', 'titulo': 'java 2030', 'autor': 'joyanes Aguilar', 'genero': 'java 2030', 'cantidad': '10', 'key': 'update'}
+LIBRO ACTUALIZADO: {'$set': {'col': 4, 'isbn': '324258', 'titulo': 'java 2030', 'autor': 'joyanes Aguilar', 'genero': 'Programacion', 'cantidad': '10'}}
+
+
+--> Log History info (2021-03-26 14:57:02.684246 Aplicacion iniciada) usaurio: Codiniqw
+
+--> Libro actualizado (2021-03-26 14:57:28.017724)
+LIBRO ORIGINAL: {'_id': ObjectId('605e4165e67635e17187ee91'), 'col': 4, 'isbn': '324258', 'titulo': 'java 2030', 'autor': 'joyanes Aguilar', 'genero': 'Programacion', 'cantidad': '10', 'key': 'update'}
+LIBRO ACTUALIZADO: {'$set': {'col': 4, 'isbn': '324258', 'titulo': 'java 2030', 'autor': 'joyanes Aguilar', 'genero': 'prueba', 'cantidad': '10'}}
+
+
+--> Log History info (2021-03-26 14:58:20.991853 Aplicacion iniciada) usaurio: Codiniqw
