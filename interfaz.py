@@ -242,19 +242,23 @@ class Interfaz:
             elif event == 'REHACER':
                 if redo.count!=0:
                     try:
-                        aux= redo.pop()
-                        if aux['key']=='add': 
-                            aux.pop('key')
+                        myclient = pymongo.MongoClient("mongodb+srv://codiniqw:Codiniqw@codiniqw.3gcnu.mongodb.net/")
+                        mydb = myclient["biblioteca"]
+                        mycol = mydb["libros"]
+                        aux2= redo.pop()
+                        print(aux2);
+                        if aux2['key']=='add': 
+                            aux2.pop('key')
                             print(redo)
-                            for libro in mycol.find({'isbn':aux['isbn']}):
+                            for libro in mycol.find({'isbn':aux2['isbn']}):
                                 print(libro)
                             mycol.delete_one(libro);
-                            aux['key']='del'
+                            aux2['key']='del'
                             undo.append(aux) 
                             data = make_table(num_rows=mycol.count())
                             window.FindElement('TABLE').update(values=data[1:][:])
 
-                        elif aux['key']=='del':
+                        elif aux2['key']=='del':
                             aux.pop('key')
                             print(redo)
                             mycol.insert_one(aux)
@@ -263,23 +267,30 @@ class Interfaz:
                             data = make_table(num_rows=mycol.count())
                             window.FindElement('TABLE').update(values=data[1:][:])
 
-                        elif aux['key']=='update':
-                            for libro in mycol.find({'col':aux['col']}):
+                        elif aux2['key']=='update1':
+                            for libro1 in mycol.find({'col': aux2['col']}):
                                 print()
-                            libroUpdated = {"$set":
+                            libroUpdated2 = {"$set":
                                 {
-                                'col': aux['col'],
-                                'isbn': aux['isbn'],
-                                'titulo': aux['titulo'],
-                                'autor': aux['autor'],
-                                'genero': aux['titulo'],
-                                'cantidad': aux['cantidad']
+                                'col': aux2['col'],
+                                'isbn': aux2['isbn'],
+                                'titulo': aux2['titulo'],
+                                'autor': aux2['autor'],
+                                'genero': aux2['genero'],
+                                'cantidad': aux2['cantidad']
                                 }
                             }
-                            mycol.update_one(libro,libroUpdated)
-                            libro['key']='update'
-                            undo.append(libro)
-                            print(undo)
+                            mycol.update_one(libro1,libroUpdated2)
+                            libroUpdated1 ={
+                                'col': libro1['col'],
+                                'isbn': libro1['isbn'],
+                                'titulo': libro1['titulo'],
+                                'autor': libro1['autor'],
+                                'genero': libro1['genero'],
+                                'cantidad': libro1['cantidad'],
+                                'key':'update'
+                            }
+                            undo.append(libroUpdated1)
                             data = make_table(num_rows=mycol.count())
                             window.FindElement('TABLE').update(values=data[1:][:])
 
@@ -288,6 +299,9 @@ class Interfaz:
 
             elif event == 'DESHACER':
                 try:
+                    myclient = pymongo.MongoClient("mongodb+srv://codiniqw:Codiniqw@codiniqw.3gcnu.mongodb.net/")
+                    mydb = myclient["biblioteca"]
+                    mycol = mydb["libros"]
                     aux=undo.pop()
                     if aux['key']=='add':
                         aux.pop('key')
@@ -313,22 +327,28 @@ class Interfaz:
 
                     elif aux['key']=='update':
                         for libro in mycol.find({'col': aux['col']}):
-                            print(libro)
+                            print()
                         libroUpdated = {"$set":
                             {
                             'col': aux['col'],
                             'isbn': aux['isbn'],
                             'titulo': aux['titulo'],
                             'autor': aux['autor'],
-                            'genero': aux['titulo'],
+                            'genero': aux['genero'],
                             'cantidad': aux['cantidad']
                             }
                         }
+                        libroUpdated1 ={
+                                'col': libro['col'],
+                                'isbn': libro['isbn'],
+                                'titulo': libro['titulo'],
+                                'autor': libro['autor'],
+                                'genero': libro['genero'],
+                                'cantidad': libro['cantidad'],
+                                'key':'update1'
+                        }
+                        redo.append(libroUpdated1)
                         mycol.update_one(libro,libroUpdated)
-                        libro['key']='update'
-                        redo.append(libro)
-                        print(redo)
-
                         data = make_table(num_rows=mycol.count())
                         window.FindElement('TABLE').update(values=data[1:][:])
 
